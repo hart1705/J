@@ -1,0 +1,27 @@
+﻿@model PORTAL.WEB.Models.AccountViewModels.RegisterViewModel
+@{
+    ViewData["Title"] = "Register";
+    Layout = "~/Views/Shared/_FormLayout.cshtml";
+}
+
+@section ContentHeader{
+    <div class="row">
+        <div class="col-md-12">
+            <div class="pull-left">
+                <small>Account</small>
+                <h4>Register New Account</h4>
+            </div>
+        </div>
+    </div>
+}
+@section ControlHeader{
+    <button type="button" width="100" onclick="$('#record-form').submit();" class="btn btn-sm btn-default btn-flat btn-controlheader">
+        <i class="fa fa-save"></i> SAVE
+    </button> <a asp-controller="BinaryTree" asp-action="Index" class="btn btn-sm btn-flat btn-default btn-controlheader"><i class="fa fa-undo"></i> BACK TO BINARY TREE</a>
+}
+
+<div class="row">
+    <div class="col-md-12" id="record-form-container">
+        @{ Html.RenderPartial("_Register", Model);}
+    </div>
+</div>

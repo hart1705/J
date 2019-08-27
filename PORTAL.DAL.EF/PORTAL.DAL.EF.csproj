@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20180720035842_ReferralCode.cs" />
+    <Compile Remove="Migrations\20180803074517_addIncome.cs" />
+    <Compile Remove="Migrations\20180809042029_references.cs" />
+    <Compile Remove="Migrations\20180809044443_bayanihanf2.cs" />
+    <Compile Remove="Migrations\20180809045023_bayanihanf3.cs" />
+    <Compile Remove="Migrations\20180810063734_RegistrationType.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Models\ReferralCode.cs~RF23fcfb7f.TMP" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="2.0.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.0.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.0.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer.Design" Version="1.1.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.0.2" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.0.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+  </ItemGroup>
+
+</Project>

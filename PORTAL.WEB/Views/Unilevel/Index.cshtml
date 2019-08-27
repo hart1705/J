@@ -1,0 +1,63 @@
+﻿@model PORTAL.WEB.Models.UnilevelViewModels.UnilevelList
+@{
+    ViewData["Title"] = "Unilevel";
+    Layout = "~/Views/Shared/_FormLayout.cshtml";
+}
+
+@section ContentHeader{
+    <h4>Unilevel</h4>
+}
+<div id="dashboard-container" class="row" style="padding:5px;">
+    <table class="table responsive no-wrap table-hover table-striped" width="100%">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayName("Level")
+                </th>
+                <th>
+                    @Html.DisplayName("Referrals")
+                </th>
+                <th>
+                    @Html.DisplayName("UNILEVEL Points")
+                </th>
+                <th>
+                    @Html.DisplayName("Overriding Com%")
+                </th>
+                <th>
+                    @Html.DisplayName("Gross Earnings")
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Records)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Levels)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Referrals)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UnilevelPoints)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OverridingCom)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GrossEarning)
+                </td>
+            </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <th style="background-color:red; color:white" colspan="4"><strong>TOTAL</strong></th>
+                <td style="background-color:red; color:white">
+                    @Model.Records.First().TotalGrossEarning
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+
+</div>

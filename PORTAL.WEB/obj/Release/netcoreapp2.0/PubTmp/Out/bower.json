@@ -1,0 +1,23 @@
+{
+  "name": "lib",
+  "homepage": "https://github.com/rodelvillegas/JMP-Project",
+  "authors": [
+    "Rodel Villegas <rodelvillegas@outlook.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "orgchart": "^2.1.1",
+    "bootstrap-table": "^1.12.1",
+    "moment": "^2.22.2"
+  }
+}

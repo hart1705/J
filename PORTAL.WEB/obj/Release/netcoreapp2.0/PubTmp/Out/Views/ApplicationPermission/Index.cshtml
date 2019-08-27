@@ -1,0 +1,22 @@
+﻿@model PORTAL.WEB.Models.PermissionViewModels.PermissionList
+
+@{
+    ViewData["Title"] = "Application Permission List";
+    Layout = "~/Views/Shared/_FormLayout.cshtml";
+}
+
+@section ContentHeader{
+    <h4>Application Permissions</h4>
+}
+<rbcontainer action-name="New" controller-name="ApplicationPermission" is-owner="true">
+    @section ControlHeader{
+        <a asp-action="New" class="btn btn-sm btn-flat btn-default btn-controlheader">ADD NEW</a>
+    }
+</rbcontainer>
+<div class="box box-widget">
+    <div class="box-body">
+        <div id="record-list-container" class="hidden">
+            @{ Html.RenderPartial("_RecordList", Model);}
+        </div>
+    </div>
+</div>

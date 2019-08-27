@@ -1,0 +1,57 @@
+C:\Users\aramos\Documents\GitHub\JMP-Project\PORTAL.WEB\bin\Debug\netcoreapp2.0\PORTAL.WEB.deps.json
+C:\Users\aramos\Documents\GitHub\JMP-Project\PORTAL.WEB\bin\Debug\netcoreapp2.0\PORTAL.WEB.runtimeconfig.json
+C:\Users\aramos\Documents\GitHub\JMP-Project\PORTAL.WEB\bin\Debug\netcoreapp2.0\PORTAL.WEB.runtimeconfig.dev.json
+C:\Users\aramos\Documents\GitHub\JMP-Project\PORTAL.WEB\bin\Debug\netcoreapp2.0\PORTAL.WEB.dll
+C:\Users\aramos\Documents\GitHub\JMP-Project\PORTAL.WEB\bin\Debug\netcoreapp2.0\PORTAL.WEB.pdb
+C:\Users\aramos\Documents\GitHub\JMP-Project\PORTAL.WEB\bin\Debug\netcoreapp2.0\PORTAL.DAL.EF.dll
+C:\Users\aramos\Documents\GitHub\JMP-Project\PORTAL.WEB\bin\Debug\netcoreapp2.0\PORTAL.DAL.EF.pdb
+C:\Users\aramos\Documents\GitHub\JMP-Project\PORTAL.WEB\obj\Debug\netcoreapp2.0\PORTAL.WEB.csprojAssemblyReference.cache
+C:\Users\aramos\Documents\GitHub\JMP-Project\PORTAL.WEB\obj\Debug\netcoreapp2.0\PORTAL.WEB.csproj.CoreCompileInputs.cache
+C:\Users\aramos\Documents\GitHub\JMP-Project\PORTAL.WEB\obj\Debug\netcoreapp2.0\UserSecretsAssemblyInfo.cs
+C:\Users\aramos\Documents\GitHub\JMP-Project\PORTAL.WEB\obj\Debug\netcoreapp2.0\PORTAL.WEB.AssemblyInfoInputs.cache
+C:\Users\aramos\Documents\GitHub\JMP-Project\PORTAL.WEB\obj\Debug\netcoreapp2.0\PORTAL.WEB.AssemblyInfo.cs
+C:\Users\aramos\Documents\GitHub\JMP-Project\PORTAL.WEB\obj\Debug\netcoreapp2.0\PORTAL.WEB.csproj.CopyComplete
+C:\Users\aramos\Documents\GitHub\JMP-Project\PORTAL.WEB\obj\Debug\netcoreapp2.0\PORTAL.WEB.dll
+C:\Users\aramos\Documents\GitHub\JMP-Project\PORTAL.WEB\obj\Debug\netcoreapp2.0\PORTAL.WEB.pdb
+D:\GSC Laptop Files\Documents\GitHub\JMP-Project\PORTAL.WEB\bin\Debug\netcoreapp2.0\appsettings.Development.json
+D:\GSC Laptop Files\Documents\GitHub\JMP-Project\PORTAL.WEB\bin\Debug\netcoreapp2.0\appsettings.json
+D:\GSC Laptop Files\Documents\GitHub\JMP-Project\PORTAL.WEB\bin\Debug\netcoreapp2.0\bower.json
+D:\GSC Laptop Files\Documents\GitHub\JMP-Project\PORTAL.WEB\bin\Debug\netcoreapp2.0\bundleconfig.json
+D:\GSC Laptop Files\Documents\GitHub\JMP-Project\PORTAL.WEB\bin\Debug\netcoreapp2.0\libman.json
+D:\GSC Laptop Files\Documents\GitHub\JMP-Project\PORTAL.WEB\bin\Debug\netcoreapp2.0\Properties\launchSettings.json
+D:\GSC Laptop Files\Documents\GitHub\JMP-Project\PORTAL.WEB\bin\Debug\netcoreapp2.0\PORTAL.WEB.deps.json
+D:\GSC Laptop Files\Documents\GitHub\JMP-Project\PORTAL.WEB\bin\Debug\netcoreapp2.0\PORTAL.WEB.runtimeconfig.json
+D:\GSC Laptop Files\Documents\GitHub\JMP-Project\PORTAL.WEB\bin\Debug\netcoreapp2.0\PORTAL.WEB.runtimeconfig.dev.json
+D:\GSC Laptop Files\Documents\GitHub\JMP-Project\PORTAL.WEB\bin\Debug\netcoreapp2.0\PORTAL.WEB.dll
+D:\GSC Laptop Files\Documents\GitHub\JMP-Project\PORTAL.WEB\bin\Debug\netcoreapp2.0\PORTAL.WEB.pdb
+D:\GSC Laptop Files\Documents\GitHub\JMP-Project\PORTAL.WEB\bin\Debug\netcoreapp2.0\PORTAL.DAL.EF.dll
+D:\GSC Laptop Files\Documents\GitHub\JMP-Project\PORTAL.WEB\bin\Debug\netcoreapp2.0\PORTAL.DAL.EF.pdb
+D:\GSC Laptop Files\Documents\GitHub\JMP-Project\PORTAL.WEB\obj\Debug\netcoreapp2.0\PORTAL.WEB.csprojAssemblyReference.cache
+D:\GSC Laptop Files\Documents\GitHub\JMP-Project\PORTAL.WEB\obj\Debug\netcoreapp2.0\PORTAL.WEB.csproj.CoreCompileInputs.cache
+D:\GSC Laptop Files\Documents\GitHub\JMP-Project\PORTAL.WEB\obj\Debug\netcoreapp2.0\UserSecretsAssemblyInfo.cs
+D:\GSC Laptop Files\Documents\GitHub\JMP-Project\PORTAL.WEB\obj\Debug\netcoreapp2.0\PORTAL.WEB.AssemblyInfoInputs.cache
+D:\GSC Laptop Files\Documents\GitHub\JMP-Project\PORTAL.WEB\obj\Debug\netcoreapp2.0\PORTAL.WEB.AssemblyInfo.cs
+D:\GSC Laptop Files\Documents\GitHub\JMP-Project\PORTAL.WEB\obj\Debug\netcoreapp2.0\PORTAL.WEB.csproj.CopyComplete
+D:\GSC Laptop Files\Documents\GitHub\JMP-Project\PORTAL.WEB\obj\Debug\netcoreapp2.0\PORTAL.WEB.dll
+D:\GSC Laptop Files\Documents\GitHub\JMP-Project\PORTAL.WEB\obj\Debug\netcoreapp2.0\PORTAL.WEB.pdb
+E:\My Project\JMP-Project\PORTAL.WEB\bin\Debug\netcoreapp2.0\appsettings.Development.json
+E:\My Project\JMP-Project\PORTAL.WEB\bin\Debug\netcoreapp2.0\appsettings.json
+E:\My Project\JMP-Project\PORTAL.WEB\bin\Debug\netcoreapp2.0\bower.json
+E:\My Project\JMP-Project\PORTAL.WEB\bin\Debug\netcoreapp2.0\bundleconfig.json
+E:\My Project\JMP-Project\PORTAL.WEB\bin\Debug\netcoreapp2.0\libman.json
+E:\My Project\JMP-Project\PORTAL.WEB\bin\Debug\netcoreapp2.0\Properties\launchSettings.json
+E:\My Project\JMP-Project\PORTAL.WEB\bin\Debug\netcoreapp2.0\PORTAL.WEB.deps.json
+E:\My Project\JMP-Project\PORTAL.WEB\bin\Debug\netcoreapp2.0\PORTAL.WEB.runtimeconfig.json
+E:\My Project\JMP-Project\PORTAL.WEB\bin\Debug\netcoreapp2.0\PORTAL.WEB.runtimeconfig.dev.json
+E:\My Project\JMP-Project\PORTAL.WEB\bin\Debug\netcoreapp2.0\PORTAL.WEB.dll
+E:\My Project\JMP-Project\PORTAL.WEB\bin\Debug\netcoreapp2.0\PORTAL.WEB.pdb
+E:\My Project\JMP-Project\PORTAL.WEB\bin\Debug\netcoreapp2.0\PORTAL.DAL.EF.dll
+E:\My Project\JMP-Project\PORTAL.WEB\bin\Debug\netcoreapp2.0\PORTAL.DAL.EF.pdb
+E:\My Project\JMP-Project\PORTAL.WEB\obj\Debug\netcoreapp2.0\PORTAL.WEB.csprojAssemblyReference.cache
+E:\My Project\JMP-Project\PORTAL.WEB\obj\Debug\netcoreapp2.0\PORTAL.WEB.csproj.CoreCompileInputs.cache
+E:\My Project\JMP-Project\PORTAL.WEB\obj\Debug\netcoreapp2.0\UserSecretsAssemblyInfo.cs
+E:\My Project\JMP-Project\PORTAL.WEB\obj\Debug\netcoreapp2.0\PORTAL.WEB.AssemblyInfoInputs.cache
+E:\My Project\JMP-Project\PORTAL.WEB\obj\Debug\netcoreapp2.0\PORTAL.WEB.AssemblyInfo.cs
+E:\My Project\JMP-Project\PORTAL.WEB\obj\Debug\netcoreapp2.0\PORTAL.WEB.csproj.CopyComplete
+E:\My Project\JMP-Project\PORTAL.WEB\obj\Debug\netcoreapp2.0\PORTAL.WEB.dll
+E:\My Project\JMP-Project\PORTAL.WEB\obj\Debug\netcoreapp2.0\PORTAL.WEB.pdb

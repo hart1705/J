@@ -1,0 +1,46 @@
+﻿@model PORTAL.WEB.UserControls.LookupControl.LookupControlModel
+<form asp-action="Associate"
+      asp-controller="LookupControl"
+      data-ajax="true"
+      data-ajax-method="POST"
+      data-ajax-mode="replace"
+      data-ajax-success=""
+      data-ajax-update="#@Model.LookupControlId-lookup-container"
+      data-ajax-loading="#application_loading"
+      data-ajax-loading-duration="5">
+    <div id="@Model.LookupControlId-lookup-addcontainer">
+        @Html.HiddenFor(m => m.LookupControlId)
+        @Html.HiddenFor(m => m.PrimaryRecordId)
+        @Html.HiddenFor(m => m.RelationshipName)
+        @Html.HiddenFor(m => m.Title)
+        <table class="table responsive no-wrap table-hover table-striped" width="100%" id="@Model.LookupControlId-lookup-addtable">
+            <thead>
+                <tr>
+                    <th>Select</th>
+                    @foreach (var col in Model.Records.ColumnHeaders)
+                    {
+                        <th>@col</th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < Model.Records.Rows.Count; i++)
+                {
+                    <tr>
+                        @Html.HiddenFor(r => r.Records.Rows[i].RecordId)
+                        <td>
+                            @Html.CheckBoxFor(c => c.Records.Rows[i].Selected)
+                        </td>
+                        @foreach (string colVal in Model.Records.Rows[i].ColumnValues)
+                        {
+                            <td>
+                                @colVal
+                            </td>
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <input type="submit" class="btn btn-default" />
+</form>

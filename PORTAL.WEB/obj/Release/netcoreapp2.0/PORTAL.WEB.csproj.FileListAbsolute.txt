@@ -1,0 +1,15 @@
+C:\Users\aramos\Documents\GitHub\JMP-Project\PORTAL.WEB\bin\Release\netcoreapp2.0\PORTAL.WEB.deps.json
+C:\Users\aramos\Documents\GitHub\JMP-Project\PORTAL.WEB\bin\Release\netcoreapp2.0\PORTAL.WEB.runtimeconfig.json
+C:\Users\aramos\Documents\GitHub\JMP-Project\PORTAL.WEB\bin\Release\netcoreapp2.0\PORTAL.WEB.runtimeconfig.dev.json
+C:\Users\aramos\Documents\GitHub\JMP-Project\PORTAL.WEB\bin\Release\netcoreapp2.0\PORTAL.WEB.dll
+C:\Users\aramos\Documents\GitHub\JMP-Project\PORTAL.WEB\bin\Release\netcoreapp2.0\PORTAL.WEB.pdb
+C:\Users\aramos\Documents\GitHub\JMP-Project\PORTAL.WEB\bin\Release\netcoreapp2.0\PORTAL.DAL.EF.dll
+C:\Users\aramos\Documents\GitHub\JMP-Project\PORTAL.WEB\bin\Release\netcoreapp2.0\PORTAL.DAL.EF.pdb
+C:\Users\aramos\Documents\GitHub\JMP-Project\PORTAL.WEB\obj\Release\netcoreapp2.0\PORTAL.WEB.csprojAssemblyReference.cache
+C:\Users\aramos\Documents\GitHub\JMP-Project\PORTAL.WEB\obj\Release\netcoreapp2.0\PORTAL.WEB.csproj.CoreCompileInputs.cache
+C:\Users\aramos\Documents\GitHub\JMP-Project\PORTAL.WEB\obj\Release\netcoreapp2.0\UserSecretsAssemblyInfo.cs
+C:\Users\aramos\Documents\GitHub\JMP-Project\PORTAL.WEB\obj\Release\netcoreapp2.0\PORTAL.WEB.AssemblyInfoInputs.cache
+C:\Users\aramos\Documents\GitHub\JMP-Project\PORTAL.WEB\obj\Release\netcoreapp2.0\PORTAL.WEB.AssemblyInfo.cs
+C:\Users\aramos\Documents\GitHub\JMP-Project\PORTAL.WEB\obj\Release\netcoreapp2.0\PORTAL.WEB.csproj.CopyComplete
+C:\Users\aramos\Documents\GitHub\JMP-Project\PORTAL.WEB\obj\Release\netcoreapp2.0\PORTAL.WEB.dll
+C:\Users\aramos\Documents\GitHub\JMP-Project\PORTAL.WEB\obj\Release\netcoreapp2.0\PORTAL.WEB.pdb

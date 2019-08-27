@@ -1,0 +1,32 @@
+﻿@model PORTAL.WEB.Models.ReferralCodeViewModels.ReferralCodeList
+<table id="record-list-table" class="table responsive no-wrap table-hover table-striped view-datatable" width="100%">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Records.FirstOrDefault().ReferralCode_Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Records.FirstOrDefault().PINCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Records.FirstOrDefault().SecutiryCode)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Records)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReferralCode_Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PINCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SecutiryCode)
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

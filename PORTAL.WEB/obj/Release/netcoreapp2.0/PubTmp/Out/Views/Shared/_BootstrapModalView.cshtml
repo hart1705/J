@@ -1,0 +1,11 @@
+﻿@model PORTAL.WEB.Models.HelperViewModels.BootstrapModalViewModel
+<div class="modal inmodal fade" id="@Model.ModalId" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog @Model.ModalSize">
+        <div class="modal-content">
+            @{
+                var modalContentId = $"{Model.ModalId}-content";
+            }
+            <div id="@modalContentId"></div>
+        </div>
+    </div>
+</div>

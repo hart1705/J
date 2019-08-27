@@ -1,0 +1,47 @@
+﻿@model PORTAL.WEB.Models.PermissionViewModels.Permission
+@{
+    ViewData["Title"] = "Application Permission Form";
+    Layout = "~/Views/Shared/_FormLayout.cshtml";
+    var displayPN = Model.FormType == Global.FormType.Create ? "New Application Permission" : Model.ApplicationPermission_Id;
+}
+@section ContentHeader{
+    <div class="row">
+        <div class="col-md-12">
+            <div class="pull-left">
+                <small>Application Perimssion</small>
+                <h4>@displayPN</h4>
+            </div>
+            <div class="pull-right">
+                @{ Html.RenderPartial("_FormCommonHeaderGroup", new FormStatusModel { CreatedById = Model.CreatedBy, CreatedOn = Model.CreatedOn, Status = Model.Status }); }
+            </div>
+        </div>
+    </div>
+}
+@section ControlHeader{
+    @{ await Html.RenderPartialAsync("_FormCommonButtonControl", new FormButtonControlModel { ControllerName = "ApplicationPermission", FormType = Model.FormType, IsRecordOwner = Model.IsRecordOwner, Status = Model.Status }); }
+}
+
+<div class="row">
+    <div class="col-md-6" id="record-form-container">
+        @{ Html.RenderPartial("_Form", Model);}
+    </div>
+    <div class="col-md-6" id="testlookup">
+        @if (Model.FormType != Global.FormType.Create)
+        {
+            <div id="applicationactionpermission-list-container">
+                @await Component.InvokeAsync("ApplicationPermission", new { @permissionId = Model.Id, @enabled = Model.FormType == Global.FormType.Update })
+            </div>
+            Html.RenderPartial("_BootstrapModalView", new PORTAL.WEB.Models.HelperViewModels.BootstrapModalViewModel { ModalId = "applicationactionpermission-modal", ModalSize = "modal-default" });
+        }
+        else
+        {
+            <text>
+            Create the record to enable content
+            </text>
+        }
+    </div>
+</div>
+@section Scripts{
+    <script src="~/js/Views/ApplicationPermission.js"></script>
+}
+

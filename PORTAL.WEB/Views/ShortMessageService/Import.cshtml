@@ -1,0 +1,31 @@
+﻿@model PORTAL.WEB.Models.SMSViewModels.SMSImportModel
+@{
+    ViewData["Title"] = "Import";
+    Layout = "~/Views/Shared/_FormLayout.cshtml";
+}
+
+@section ContentHeader{
+    <div class="row">
+        <div class="col-md-12">
+            <div class="pull-left">
+                <small>Short Message Service</small>
+                <h4>SMS Import</h4>
+            </div>
+        </div>
+    </div>
+}
+
+<div class="row">
+    <div class="col-md-12" id="record-form-container">
+        @{ Html.RenderPartial("_Import", Model);}
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/js/Views/ShortMessageService.js"></script>
+    <script>
+        $(function () {
+            SMS.Form_OnInit();
+        });
+    </script>
+}

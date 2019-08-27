@@ -1,0 +1,89 @@
+﻿@model PORTAL.WEB.UserControls.LookupControl.LookupControlModel
+<form asp-action="Associate"
+      asp-controller="LookupControl"
+      data-ajax="true"
+      data-ajax-method="POST"
+      data-ajax-mode="replace"
+      data-ajax-success=""
+      data-ajax-update="#@Model.LookupControlId-lookup-modal-content"
+      data-ajax-loading="#@Model.LookupControlId-lookup-addloading"
+      data-ajax-loading-duration="5">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 id="myModalLabel" class="modal-title">@Model.Title</h4>
+    </div>
+    <div class="modal-body" id="@Model.LookupControlId-lookup-modal-body">
+        <div class="row pull-right">
+            <div class="col-md-4">
+                <p>
+                    <i style="display:none; font-size:16px; line-height:2; margin-right:-20px;" class="fa fa-spinner fa-spin pull-right" id="@Model.LookupControlId-lookup-searchloading"></i>
+                </p>
+            </div>
+            <div class="col-md-8">
+                <div class="input-group">
+                    <input id="@Model.LookupControlId-lookup-searchval" onkeypress="Lookup.Search_OnKeyPress(event, '#@Model.LookupControlId-lookup-search-btn');" type="text" class="input-sm form-control">
+                    <span class="input-group-btn">
+                        <button id="@Model.LookupControlId-lookup-search-btn" type="button" class="btn btn-sm btn-default" onclick="$('#@Model.LookupControlId-lookup-search').val($('#@Model.LookupControlId-lookup-searchval').val()); $('#@Model.LookupControlId-lookup-searchform').submit(); return false;">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div id="@Model.LookupControlId-lookup-addcontainer">
+            @Html.HiddenFor(m => m.LookupControlId)
+            @Html.HiddenFor(m => m.PrimaryRecordId)
+            @Html.HiddenFor(m => m.RelationshipName)
+            @Html.HiddenFor(m => m.Title)
+            <table class="table responsive no-wrap table-hover table-striped" width="100%" id="@Model.LookupControlId-lookup-addtable">
+                <thead>
+                    <tr>
+                        <th>Select</th>
+                        @foreach (var col in Model.Records.ColumnHeaders)
+                        {
+                            <th>@col</th>
+                        }
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int i = 0; i < Model.Records.Rows.Count; i++)
+                    {
+                        <tr onclick="Lookup.TableRow_OnClick(this)" style="cursor:pointer;">
+                            @Html.HiddenFor(r => r.Records.Rows[i].RecordId)
+                            <td>
+                                @Html.CheckBoxFor(c => c.Records.Rows[i].Selected, new { @class= "lookup-checkbox", @style = "display:none;" })
+                                <i class="lookup-checkicon fa fa-check fa-sm" style="display:none;"></i>
+                            </td>
+                            @foreach (string colVal in Model.Records.Rows[i].ColumnValues)
+                            {
+                                <td>
+                                    @colVal
+                                </td>
+                            }
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-sm btn-flat btn-default" data-dismiss="modal" style="width:65px;">Close</button>
+        <button type="submit" class="btn btn-sm btn-flat btn-primary" style="width:65px;">Add<i id="@Model.LookupControlId-lookup-addloading" class="fa fa-spinner fa-spin" style="display:none"></i></button>
+    </div>
+</form>
+<form id="@Model.LookupControlId-lookup-searchform"
+      asp-action="LoadRecords"
+      asp-controller="LookupControl"
+      data-ajax="true"
+      data-ajax-method="GET"
+      data-ajax-mode="replace"
+      data-ajax-success="Lookup.ModalBindToDataTable('@Model.LookupControlId-lookup-addtable')"
+      data-ajax-update="#@Model.LookupControlId-lookup-modal-content"
+      data-ajax-loading="#@Model.LookupControlId-lookup-searchloading"
+      data-ajax-loading-duration="5">
+    <input type="hidden" id="@Model.LookupControlId-lookup-lookupControlId" name="lookupControlId" value="@Model.LookupControlId">
+    <input type="hidden" id="@Model.LookupControlId-lookup-primaryRecordId" name="primaryRecordId" value="@Model.PrimaryRecordId">
+    <input type="hidden" id="@Model.LookupControlId-lookup-relationShipName" name="relationShipName" value="@Model.RelationshipName">
+    <input type="hidden" id="@Model.LookupControlId-lookup-title" name="title" value="@Model.Title">
+    <input type="hidden" id="@Model.LookupControlId-lookup-search" name="search">
+</form>

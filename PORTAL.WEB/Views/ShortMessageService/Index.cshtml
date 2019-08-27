@@ -1,0 +1,123 @@
+﻿@model PORTAL.WEB.Models.SMSViewModels.SMSList
+@{
+    ViewData["Title"] = "SMS List";
+    Layout = "~/Views/Shared/_FormLayout.cshtml";
+}
+
+@section ContentHeader{
+    <h4>Short Message Service</h4>
+}
+
+@section ControlHeader{
+    <rbcontainer action-name="New" controller-name="ShortMessageService" is-owner="true">
+        <a asp-action="New" class="btn btn-sm btn-flat btn-default btn-controlheader"><i class="fa fa-plus"></i> ADD NEW</a>
+    </rbcontainer>
+    <div id="bulktransact-container" style="display:none;">
+        <button class="btn btn-sm btn-flat btn-default btn-controlheader" onclick="SMS.BulkTransactBtn_OnClick(event, 0)"><i class="fa fa-share-square"></i> RESEND</button>
+        <button class="btn btn-sm btn-flat btn-default btn-controlheader" onclick="SMS.BulkTransactBtn_OnClick(event, 1)"><i class="fa fa-times"></i> DELETE</button>
+        <button class="btn btn-sm btn-flat btn-default btn-controlheader" onclick="SMS.BulkTransactBtn_OnClick(event, 2)"><i class="fa fa-adjust"></i> ACTIVATE</button>
+        <button class="btn btn-sm btn-flat btn-default btn-controlheader" onclick="SMS.BulkTransactBtn_OnClick(event, 3)"><i class="fa fa-adjust"></i> DEACTIVATE</button>
+    </div>
+}
+
+
+<div class="box box-widget">
+    <div class="box-body">
+        <div class="row">
+            <div class="col-md-12">
+                <form asp-controller="ShortMessageService" asp-action="Records"
+                      data-ajax-mode="replace" data-ajax-update="#record-list-container"
+                      data-ajax-loading="#record-filter-loading-animation"
+                      data-ajax-complete="Form_OnLoad"
+                      data-ajax="true" data-ajax-method="POST" class="form-inline">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="StartDate" class="control-label">Start Date</label>
+                                <input name="StartDate" type="date" id="startDate" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label for="EndDate" class="control-label">End Date</label>
+                                <input name="EndDate" id="startDate" type="date" class="form-control" />
+                            </div>
+                            <rbcontainer action-name="Index" controller-name="ShortMessageService" is-owner="false">
+                                <div class="form-group">
+                                    <label for="EndDate" class="control-label">Specific User</label>
+                                    <lookup input-id="ApplicationUserId"
+                                            lookup-id="lookup-user"
+                                            record-id=""
+                                            entity-name="User"
+                                            display-column="UserName"
+                                            display-columnset="UserName:[User Name]#FirstName:[First Name]#LastName:[Last Name]"
+                                            input-size="default"
+                                            target-modal="global-lookup-modal"
+                                            lookup-title="Select User">
+                                    </lookup>
+                                </div>
+                                <div class="form-group">
+                                    <select name="AllRecord" id="allRecord" class="form-control">
+                                        <option value="false">My Records</option>
+                                        <option value="true">All Records</option>
+                                    </select>
+                                </div>
+                            </rbcontainer>
+                            <div class="form-group">
+                                <label for="EndDate" class="control-label">SMS Status</label>
+                                <select name="SMSStatus" asp-items="Html.GetEnumSelectList<Enums.SMSStatus>()" id="SMSStatus" class="form-control">
+                                    <option value="-1">All</option>
+                                </select>
+                            </div>
+                            <button type="submit" style="width:75px;" class="btn btn-default btn-flat">Filter <i id="record-filter-loading-animation" style="display:none;" class="fa fa-spinner fa-spin"></i></button>
+                        </div>
+                    </div>
+                </form>
+                <hr />
+                <br />
+            </div>
+            <div class="col-md-12">
+                <div id="record-list-container" class="hidden">
+                    @{ Html.RenderPartial("_RecordList", Model);}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script src="~/js/Views/ShortMessageService.js"></script>
+    <script>
+        var table = null;
+
+        $(function () {
+            Form_OnLoad();
+        });
+
+        function Form_OnLoad() {
+            
+            table = Helper.BindToDataTable('#record-list-table', { columnDefs: [{ orderable: false, targets: [0] }] });
+            ShowHideBulkTransactBtn();
+            $('#record-list-table tbody').on('click', 'tr', function () {
+                var selectbox = $(this).find('.selectbox').first();
+                selectbox.prop("checked", !selectbox.prop("checked"));
+                ShowHideBulkTransactBtn();
+            });
+            $('.selectbox').on('click', this, function () {
+                $(this).prop("checked", !$(this).prop("checked"));
+                ShowHideBulkTransactBtn();
+            });
+            $('#selectbox-all').on('click', function () {
+                var rows = table.rows({ 'search': 'applied' }).nodes();
+                $('input[type="checkbox"]', rows).prop('checked', this.checked);
+                ShowHideBulkTransactBtn();
+            });
+        }
+
+        function ShowHideBulkTransactBtn() {
+            if (table == null) return;
+            var rows = table.rows({ 'search': 'applied' }).nodes();
+            var hasSelected = $('input:checkbox:checked', rows).length > 0;
+            var display = hasSelected ? "inline-block" : "none";
+            $('#bulktransact-container').css("display", display);
+        }
+    </script>
+
+}

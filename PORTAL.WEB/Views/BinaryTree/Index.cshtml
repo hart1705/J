@@ -1,0 +1,111 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_FormLayout.cshtml";
+}
+
+@section ContentHeader{
+    <h4>Geneology</h4>
+}
+<link href="~/lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
+@section ControlHeader{
+    <a href="#" onclick="loadBinaryTree(''); return false;" class="btn btn-sm btn-flat btn-default btn-controlheader"><i class="fa fa-sync"></i> REFRESH GENEOLOGY</a>
+}
+<link href="~/css/Views/Home.css" rel="stylesheet" />
+<div class="row">
+    <div class="col-md-3" style="padding:10px;">
+        <div class="box box-success">
+            <div class="box-body box-profile">
+                <img class="profile-user-img img-responsive img-circle" src="/images/user.png" alt="User profile picture">
+
+                <h3 id="node-name" class="profile-username text-center"></h3>
+
+                <p class="text-muted text-center">J M P</p>
+
+                <ul class="list-group list-group-unbordered">
+                    <li class="list-group-item">
+                        <b>Username</b> <a id="node-username" class="pull-right"></a>
+                    </li>
+                    <li class="list-group-item">
+                        <b>Date Registered</b> <a id="node-dateregistered" class="pull-right"></a>
+                    </li>
+                    <li class="list-group-item">
+                        <b>Referrals</b> <a id="node-referrals" class="pull-right"></a>
+                    </li>
+                </ul>
+                <button id="btnViewBinary" onclick="loadBinaryTree($('#node-username').attr('userid')); return false;" class="btn btn-success btn-block"><b>View Binary Tree</b></button>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-9">
+        <div id="chart-container"></div>
+    </div>
+</div>
+
+@section Scripts{
+    <script type="text/javascript">
+
+        var binaryChart = undefined;
+
+        $(function () {
+            loadBinaryTree('');
+        });
+
+        function loadBinaryTree(userId) {
+            $('#chart-container').empty();
+            if (userId == undefined) {
+                userId = '';
+            }
+            showBinary(userId);
+        }
+
+        function nodeDetail(src) {
+            var node = $(src);
+            $('#node-name').html(node.attr('userfname'));
+            $('#node-username').html(node.attr('username'));
+            $('#node-dateregistered').html(node.attr('dateregistered'));
+            $('#node-username').attr('userid', node.attr('userid'));
+            $('#node-referrals').html(node.attr('referrals'));
+        }
+
+        function showBinary(userId) {
+            if (binaryChart == undefined) {
+                binaryChart = $('#chart-container').orgchart({
+                    'pan': true,
+                    'zoom': true,
+                    'data': '@Url.Action("GetUserBinaryTree", "BinaryTree")?userId=' + userId,
+                    'zoominLimit': 1,
+                    'zoomoutLimit': 0.3,
+                    'nodeContent': 'title',
+                    'createNode': function ($node, data) {
+                        var contentNode = $node.children('.content');
+                        if (contentNode == undefined)
+                            return;
+                        var secondMenuIcon = $('<i>', {
+                            'class': 'fa fa-info-circle second-menu-icon',
+                            click: function () {
+                                $(this).siblings('.second-menu').toggle();
+                            }
+                        });
+
+                        var secondMenu = "";
+                        if (data.isdummy == "0") {
+
+                            secondMenu = '<div class="second-menu"><a href="#" userid="' + data.userid +
+                                '" username="' + data.title + '" userfname="' + data.name + '" dateregistered="' + data.dateregistered +
+                                '" referrals="' + data.referrals +
+                                '" onclick = "nodeDetail(this); return false;" > <img class="avatar" src="/images/user.png"></a></div> ';
+                        }
+                        else {
+                            secondMenu = '<div class="second-menu"><a href="/Account/Register?p=' + data.position +'&parentId=' + data.userid + '">REGISTER HERE</a></div>';
+                        }
+                        contentNode.append(secondMenu);
+                    }
+                });
+            }
+            else {
+                binaryChart.init({ 'data': '@Url.Action("GetUserBinaryTree", "BinaryTree")?userId=' + userId });
+            }
+        };
+    </script>
+}

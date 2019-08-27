@@ -1,0 +1,100 @@
+﻿@model PORTAL.WEB.Models.ApplicationUserViewModels.ApplicationUserList
+
+<table id="user-list-table" class="table responsive no-wrap table-hover table-striped view-datatable" width="100%">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Users.FirstOrDefault().UserName)
+            </th>
+            <th>
+                Full Name
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Users.FirstOrDefault().Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Users.FirstOrDefault().PhoneNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Users.FirstOrDefault().CreatedBy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Users.FirstOrDefault().CreatedOn)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Users.FirstOrDefault().ModifiedOn)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Users.FirstOrDefault().Status)
+            </th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Users)
+        {
+            var isOwner = item.CreatedBy == Model.UserHandler.User.Id;
+            var hasUpdatePermission = Model.UserHandler.HasRequiredPermission("ApplicationUser-Update", isOwner);
+            var hasDeletePermission = Model.UserHandler.HasRequiredPermission("ApplicationUser-Delete", isOwner);
+            var hasViewPermission = Model.UserHandler.HasRequiredPermission("ApplicationUser-Form", isOwner);
+            <tr>
+                <td>
+                    @if (hasViewPermission)
+                    {
+                        <a asp-action="Form" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.UserName)</a>
+                    }
+                    else
+                    {
+                        @Html.DisplayFor(modelItem => item.UserName)
+                    }
+                </td>
+                <td>
+                    @{ var name = $"{item.FirstName} {item.LastName}"; }@name
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PhoneNumber)
+                </td>
+                <td>
+                    @{var createdbyname = await Model.UserHandler.GetUserFullName(item.CreatedBy);
+                    }@createdbyname
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreatedOn)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ModifiedOn)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    @if (hasUpdatePermission)
+                    {
+                        <a asp-action="Form" asp-route-id="@item.Id">Edit</a>
+                    }
+                    @if (hasDeletePermission && hasUpdatePermission)
+                    {
+                        <text>|</text>
+                    }
+                    @if (hasDeletePermission)
+                    {
+                        <a asp-action="Delete" asp-route-id="@item.Id"
+                           data-target="#record-delete-modal"
+                           data-ajax="true"
+                           data-ajax-method="GET"
+                           data-ajax-mode="replace"
+                           data-ajax-success="Helper.BootstrapModal_OnSuccess(this)"
+                           data-ajax-update="#record-delete-modal-content"
+                           data-ajax-loading="#application_loading"
+                           data-ajax-loading-duration="5">
+                            Delete
+                        </a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

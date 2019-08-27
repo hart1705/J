@@ -1,0 +1,18 @@
+﻿@model FormStatusModel
+@inject UserManager<ApplicationUser> UserManager
+@{
+    var user = !string.IsNullOrWhiteSpace(Model.CreatedById) ? await UserManager.FindByIdAsync(Model.CreatedById) : new ApplicationUser();
+    user = user == null ? new ApplicationUser() : user;
+}
+<div class="col-md-2 header-group">
+    <div class="header-group-column">Created By</div>
+    <div class="header-group-field">@{ var name = $"{user.FirstName} {user.LastName}"; } @name</div>
+</div>
+<div class="col-md-2 header-group">
+    <div class="header-group-column">Created On</div>
+    <div class="header-group-field">@{ var display = Model.CreatedOn.HasValue ? Model.CreatedOn.Value.ToString("MM/dd/yyyy") : ""; } @display</div>
+</div>
+<div class="col-md-2 header-group">
+    <div class="header-group-column">Status</div>
+    <div class="header-group-field">@Html.DisplayFor(model => model.Status)</div>
+</div>

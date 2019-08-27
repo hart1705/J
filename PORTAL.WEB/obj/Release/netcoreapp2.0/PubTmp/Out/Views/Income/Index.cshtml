@@ -1,0 +1,51 @@
+﻿@model PORTAL.WEB.Models.IncomeViewModels.IncomeList
+@{
+    ViewData["Title"] = "Income";
+    Layout = "~/Views/Shared/_FormLayout.cshtml";
+}
+
+@section ContentHeader{
+    <h4>Income</h4> 
+}
+    <div id="dashboard-container" class="row" style="padding:5px;">
+        <table class="table responsive no-wrap table-hover table-striped" width="100%">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayName("Income Type")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Description")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Total Amount")
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Records)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.IncomeType)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TotalAmount)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th style="background-color:red; color:white" colspan="2"><strong>TOTAL</strong></th>
+                    <td style="background-color:red; color:white">
+                        @Model.Records.First().NetIncome
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+
+    </div>

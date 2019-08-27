@@ -1,0 +1,117 @@
+﻿@model PORTAL.WEB.Models.SMSViewModels.SMSList
+<form id="BulkTransact_Form" asp-action="BulkTransact" asp-controller="ShortMessageService">
+    @Html.AntiForgeryToken()
+    <input type="hidden" id="action" name="action" />
+    <table id="record-list-table" class="table responsive no-wrap table-hover table-striped" width="100%">
+        <thead>
+            <tr>
+                <th><input id="selectbox-all" type="checkbox" /> </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Records.FirstOrDefault().ShortMessageService_Id)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Records.FirstOrDefault().MobileNumber)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Records.FirstOrDefault().SMSStatus)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Records.FirstOrDefault().CompletedOn)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Records.FirstOrDefault().CreatedBy)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Records.FirstOrDefault().ModifiedOn)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Records.FirstOrDefault().CreatedOn)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Records.FirstOrDefault().Status)
+                </th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Records != null)
+            {
+                var items = Model.Records.ToList();
+
+                for (int i = 0; i < items.Count; i++)
+                {
+                    var item = items[i];
+                    var isOwner = item.CreatedBy == Model.UserHandler.User.Id;
+                    var hasUpdatePermission = Model.UserHandler.HasRequiredPermission("ShortMessageService-Update", isOwner);
+                    var hasDeletePermission = Model.UserHandler.HasRequiredPermission("ShortMessageService-Delete", isOwner);
+                    var hasViewPermission = Model.UserHandler.HasRequiredPermission("ShortMessageService-Form", isOwner);
+                    <tr>
+                        <td>
+                            @if (isOwner || Model.UserHandler.IsSystemAdmin)
+                            {
+                                @Html.HiddenFor(modelItem => items[i].Id)
+                                @Html.CheckBoxFor(modelItem => items[i].Selected, new { @class = "selectbox" })
+                            }
+                        </td>
+                        <td>
+                            @if (hasViewPermission)
+                            {
+                                <a asp-action="Form" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.ShortMessageService_Id)</a>
+                            }
+                            else
+                            {
+                                @Html.DisplayFor(modelItem => item.ShortMessageService_Id)
+                            }
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MobileNumber)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SMSStatus)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CompletedOn)
+                        </td>
+                        <td>
+                            @{var name = await Model.UserHandler.GetUserFullName(item.CreatedBy);
+                            }@name
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ModifiedOn)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CreatedOn)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Status)
+                        </td>
+                        <td>
+                            @if (hasUpdatePermission)
+                            {
+                                <a asp-action="Form" asp-route-id="@item.Id">Edit</a>
+                            }
+                            @if (hasDeletePermission && hasUpdatePermission)
+                            {
+                                <text>|</text>
+                            }
+                            @if (hasDeletePermission)
+                            {
+                                <a asp-action="Delete" asp-route-id="@item.Id"
+                                   data-target="#record-delete-modal"
+                                   data-ajax="true"
+                                   data-ajax-method="GET"
+                                   data-ajax-mode="replace"
+                                   data-ajax-success="Helper.BootstrapModal_OnSuccess(this)"
+                                   data-ajax-update="#record-delete-modal-content"
+                                   data-ajax-loading="#application_loading"
+                                   data-ajax-loading-duration="5">
+                                    Delete
+                                </a>
+                            }
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</form>

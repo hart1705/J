@@ -1,0 +1,45 @@
+﻿@using PORTAL.WEB.Models.ReferralCodeViewModels
+@{
+    ViewData["Title"] = "Generate Referral Codes";
+    Layout = "~/Views/Shared/_FormLayout.cshtml";
+    var controller = "ReferralCode";
+}
+
+@section ContentHeader{
+    <h4>Generate Referral Codes</h4>
+}
+
+@section ControlHeader{
+    <a asp-action="Index" class="btn btn-sm btn-flat btn-default btn-controlheader">BACK TO LIST</a>
+}
+
+<div class="box box-widget">
+    <div class="box-body">
+        <div class="row">
+            <div class="col-md-12">
+                <form asp-controller="@controller" asp-action="GenerateCode"
+                      data-ajax-mode="replace" data-ajax-update="#record-list-container"
+                      data-ajax-loading="#record-filter-loading-animation"
+                      data-ajax-complete="Helper.BindToDataTable('#record-list-table')"
+                      data-ajax="true" data-ajax-method="POST" class="form-inline">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="quantity" class="control-label">Number of Codes</label>
+                                <input name="quantity" type="number" id="quantity" class="form-control" />
+                            </div>
+                            <button type="submit" style="width:100px;" class="btn btn-default btn-flat">GENERATE <i id="record-filter-loading-animation" style="display:none;" class="fa fa-spinner fa-spin"></i></button>
+                        </div>
+                    </div>
+                </form>
+                <hr />
+                <br />
+            </div>
+            <div class="col-md-12">
+                <div id="record-list-container" class="hidden">
+                    @{ Html.RenderPartial("_GenerateCode", new ReferralCodeList { Records = new List<ReferralCodeModel>() });}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

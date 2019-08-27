@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - AJMP </title>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/lib/adminlte/dist/css/AdminLTE.min.css" rel="stylesheet" />
+    <link href="~/lib/adminlte/dist/css/skins/_all-skins.min.css" rel="stylesheet" />
+    <link href="~/lib/adminlte/plugins/fontawesome/web-fonts-with-css/css/fontawesome-all.css" rel="stylesheet" />
+    <link href="~/lib/adminlte/plugins/ionicons-2.0.1/css/ionicons.min.css" rel="stylesheet" />
+    <link href="~/lib/toastr/dist/toastr.min.css" rel="stylesheet" />
+    <link href="~/lib/DataTables/datatables.min.css" rel="stylesheet" />
+    <link href="~/css/PanelCollapse.css" rel="stylesheet" />
+    <link href="~/lib/adminlte/plugins/iCheck/square/_all.css" rel="stylesheet" />
+    <link href="~/lib/orgchart/dist/css/jquery.orgchart.min.css" rel="stylesheet" />
+    <link href="~/css/site.css" rel="stylesheet" />
+</head>
+<body class="hold-transition skin-green layout-top-nav fixed">
+    <div class="wrapper">
+        @RenderBody()
+    </div>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-ajax-unobtrusive/dist/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="~/lib/adminlte/dist/js/adminlte.min.js"></script>
+    <script src="~/lib/DataTables/datatables.min.js"></script>
+    <script src="~/lib/toastr/dist/toastr.min.js"></script>
+    <script src="~/lib/slimScroll/jquery.slimscroll.min.js"></script>
+    <script src="~/js/UserControls/LookupControl.js"></script>
+    <script src="~/js/UserControls/Annotation.js"></script>
+    <script src="~/lib/PACE/pace.min.js"></script>
+    <script src="~/lib/sweetalert2/sweetalert2.js"></script>
+    <script src="~/lib/adminlte/plugins/iCheck/icheck.min.js"></script>
+    <script src="~/lib/orgchart/dist/js/jquery.orgchart.min.js"></script>
+    <script src="~/lib/moment/min/moment-with-locales.min.js"></script>
+    <script src="~/js/Helper.js"></script>
+    <script src="~/js/site.js"></script>
+    <script>
+        $(function () {
+            Portal.OnLoad();
+        });
+    </script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

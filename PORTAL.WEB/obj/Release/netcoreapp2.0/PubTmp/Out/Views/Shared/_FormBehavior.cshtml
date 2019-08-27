@@ -1,0 +1,16 @@
+﻿@model PORTAL.WEB.Interfaces.FormBehavior
+@if (Model != null)
+{
+    if (Model.Notification != null)
+    {
+        <input type="hidden" id="form-has-notification" value="true" />
+        <input type="hidden" asp-for="Notification.IsError" />
+        <input type="hidden" asp-for="Notification.Title" />
+        <input type="hidden" asp-for="Notification.Message" />
+    }
+    if (Model.PageRedirect != null && Model.PageRedirect.Reload)
+    {
+        <input type="hidden" id="form-redirect" value="true" />
+        <input type="hidden" asp-for="PageRedirect.URL" value="@Html.Raw(Model.PageRedirect.URL)" />
+    }
+}

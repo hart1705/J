@@ -1,0 +1,76 @@
+﻿@model PORTAL.WEB.UserControls.LookupControl.LookupControlModel
+
+<div id="@Model.LookupControlId-lookup-container">
+    <text style="font-size:14px; font-weight:600">
+        @Model.Title
+    </text>
+    @if (Model.Enabled)
+    {
+        <a asp-action="LoadRecords" asp-controller="LookupControl"
+           asp-route-lookupControlId="@Model.LookupControlId"
+           asp-route-primaryRecordId="@Model.PrimaryRecordId"
+           asp-route-relationShipName="@Model.RelationshipName"
+           asp-route-title="@Model.Title"
+           data-target="#@Model.LookupControlId-lookup-modal"
+           data-ajax="true"
+           data-ajax-method="GET"
+           data-ajax-mode="replace"
+           data-ajax-success="Helper.BootstrapModal_OnSuccess(this); Lookup.ModalBindToDataTable('@Model.LookupControlId-lookup-addtable');"
+           data-ajax-update="#@Model.LookupControlId-lookup-modal-content"
+           data-ajax-loading="#application_loading"
+           data-ajax-loading-duration="5"
+           class="btn btn-sm btn-flat btn-default pull-right lookup-btnadd">
+            <i class="fa fa-plus"></i>&nbsp;&nbsp;&nbsp;ADD
+        </a>
+    }
+    @Html.HiddenFor(r => r.PrimaryRecordId)
+    <table class="table responsive no-wrap table-hover table-striped lookup-table" width="100%" id="@Model.LookupControlId-lookup-table">
+        <thead>
+            <tr>
+                @foreach (var col in Model.Records.ColumnHeaders)
+                {
+                    <th>@col</th>
+                }
+                @if (Model.Enabled)
+                {
+                <th>Actions</th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.Records.Rows.Count; i++)
+            {
+                <tr>
+                    @Html.HiddenFor(r => r.Records.Rows[i].RecordId)
+                    @foreach (string colVal in Model.Records.Rows[i].ColumnValues)
+                    {
+                        <td>
+                            @colVal
+                        </td>
+                    }
+                    @if (Model.Enabled)
+                    {
+                    <td>
+                        <a asp-action="Disassociate" asp-controller="LookupControl"
+                           asp-route-lookupControlId="@Model.LookupControlId"
+                           asp-route-primaryRecordId="@Model.PrimaryRecordId"
+                           asp-route-recordId="@Model.Records.Rows[i].RecordId"
+                           asp-route-relationShipName="@Model.RelationshipName"
+                           asp-route-title="@Model.Title"
+                           data-ajax="true"
+                           data-ajax-method="GET"
+                           data-ajax-mode="replace"
+                           data-ajax-failure="alert('Error')"
+                           data-ajax-success="Lookup.BindToDataTable('@Model.LookupControlId-lookup-table')"
+                           data-ajax-update="#@Model.LookupControlId-lookup-container"
+                           data-ajax-loading="#application_loading"
+                           data-ajax-loading-duration="5">
+                            Remove
+                        </a>
+                    </td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

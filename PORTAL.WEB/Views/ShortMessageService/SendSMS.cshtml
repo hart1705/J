@@ -1,0 +1,37 @@
+﻿@model PORTAL.WEB.Models.SMSViewModels.SMSPublicModel
+@{
+    ViewData["Title"] = "SendSMS";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="login-box">
+    <div class="login-logo">
+        <small>S M S&nbsp; BLA<img alt="" src="~/images/logo.png" style="max-height: 40px; max-width: 100%;">T</small>
+    </div>
+    <div class="login-box-body">
+        <div class="row">
+            <div id="record-form-container">
+                @{ Html.RenderPartial("_SendSMS", Model);}
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/js/Views/ShortMessageService.js"></script>
+    <script src='https://www.google.com/recaptcha/api.js?onload=LoadReCaptCha&render=explicit" async defer'></script>
+    <script>
+        var text_max = 400;
+        function LoadReCaptCha(){
+            grecaptcha.render('captcha_container', {
+                'sitekey': '6LfJLlgUAAAAAIB2BTA21DNhG_Yl6T2K7WFFr04u',
+                'callback': function (response) {
+                    console.log(response);
+                }
+            });
+        }
+        $(function () {
+            SMSPublic.Form_OnLoad(false);
+        });
+
+    </script>
+}

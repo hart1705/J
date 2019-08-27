@@ -1,0 +1,8 @@
+C:\Users\aramos\Documents\GitHub\JMP-Project\PORTAL.DAL.EF\bin\Release\netstandard2.0\PORTAL.DAL.EF.deps.json
+C:\Users\aramos\Documents\GitHub\JMP-Project\PORTAL.DAL.EF\bin\Release\netstandard2.0\PORTAL.DAL.EF.dll
+C:\Users\aramos\Documents\GitHub\JMP-Project\PORTAL.DAL.EF\bin\Release\netstandard2.0\PORTAL.DAL.EF.pdb
+C:\Users\aramos\Documents\GitHub\JMP-Project\PORTAL.DAL.EF\obj\Release\netstandard2.0\PORTAL.DAL.EF.csproj.CoreCompileInputs.cache
+C:\Users\aramos\Documents\GitHub\JMP-Project\PORTAL.DAL.EF\obj\Release\netstandard2.0\PORTAL.DAL.EF.AssemblyInfoInputs.cache
+C:\Users\aramos\Documents\GitHub\JMP-Project\PORTAL.DAL.EF\obj\Release\netstandard2.0\PORTAL.DAL.EF.AssemblyInfo.cs
+C:\Users\aramos\Documents\GitHub\JMP-Project\PORTAL.DAL.EF\obj\Release\netstandard2.0\PORTAL.DAL.EF.dll
+C:\Users\aramos\Documents\GitHub\JMP-Project\PORTAL.DAL.EF\obj\Release\netstandard2.0\PORTAL.DAL.EF.pdb

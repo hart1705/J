@@ -1,0 +1,21 @@
+﻿@model PORTAL.WEB.Models.ApplicationUserViewModels.RegisterUserModel
+@{
+    ViewData["Title"] = "Register User";
+    Layout = "~/Views/Shared/_FormLayout.cshtml";
+}
+@section ContentHeader{
+    <small>Application User</small>
+    <h4>Register User</h4>
+}
+@section ControlHeader{
+    @{ await Html.RenderPartialAsync("_FormCommonButtonControl", new FormButtonControlModel { ControllerName = "ApplicationUser", FormType = Model.FormType, IsRecordOwner = Model.IsRecordOwner }); }
+}
+
+<div class="row">
+    <div class="col-md-6" id="record-form-container">
+        @{ Html.RenderPartial("_RegisterForm", Model);}
+    </div>
+    <div class="col-md-6" id="testlookup">
+        Create the record to enable content.
+    </div>
+</div>

@@ -1,0 +1,93 @@
+﻿@model PORTAL.WEB.Models.AccountViewModels.RegisterViewModel
+@{ Html.RenderPartial("_FormBehavior", Model.FormBehavior); }
+<form asp-controller="Account" asp-action="Register"
+      id="record-form"
+      data-ajax-mode="replace"
+      data-ajax-update="#record-form-container"
+      data-ajax-loading="#application_loading"
+      data-ajax="true"
+      data-ajax-complete="Portal.Exec_FormBehavior"
+      data-ajax-method="POST"
+      class="form-horizontal">
+    <div asp-validation-summary="ModelOnly" class="text-danger">Error occurred:</div>
+    <input type="hidden" asp-for="FormType" />
+    <input type="hidden" asp-for="ParentId" />
+    <input type="hidden" asp-for="Position" />
+    <input type="hidden" asp-for="RegistrationType" />
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group form-group-sm">
+                <label asp-for="UserName" class="col-md-3 control-label"></label>
+                <div class="col-md-9">
+                    <input asp-for="UserName" class="form-control" />
+                    <span asp-validation-for="UserName" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group form-group-sm">
+                <label asp-for="Email" class="col-md-3 control-label"></label>
+                <div class="col-md-9">
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group form-group-sm">
+                <label asp-for="FirstName" class="col-md-3 control-label"></label>
+                <div class="col-md-9">
+                    <input asp-for="FirstName" class="form-control" />
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group form-group-sm">
+                <label asp-for="MiddleName" class="col-md-3 control-label"></label>
+                <div class="col-md-9">
+                    <input asp-for="MiddleName" class="form-control" />
+                    <span asp-validation-for="MiddleName" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group form-group-sm">
+                <label asp-for="LastName" class="col-md-3 control-label"></label>
+                <div class="col-md-9">
+                    <input asp-for="LastName" class="form-control" />
+                    <span asp-validation-for="LastName" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group form-group-sm">
+                <label asp-for="PhoneNumber" class="col-md-3 control-label"></label>
+                <div class="col-md-9">
+                    <input asp-for="PhoneNumber" class="form-control" />
+                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group form-group-sm">
+                <label asp-for="Password" class="col-md-3 control-label"></label>
+                <div class="col-md-9">
+                    <input asp-for="Password" class="form-control" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group form-group-sm">
+                <label asp-for="ConfirmPassword" class="col-md-3 control-label"></label>
+                <div class="col-md-9">
+                    <input asp-for="ConfirmPassword" class="form-control" />
+                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group form-group-sm">
+                <label asp-for="Pin" class="col-md-3 control-label"></label>
+                <div class="col-md-6">
+                    <input asp-for="Pin" class="form-control" />
+                    <span asp-validation-for="Pin" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group form-group-sm">
+                <label asp-for="SecurityCode" class="col-md-3 control-label"></label>
+                <div class="col-md-6">
+                    <input asp-for="SecurityCode" class="form-control" />
+                    <span asp-validation-for="SecurityCode" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,46 @@
+﻿@model PORTAL.WEB.Models.BootstrapModalModel
+@{
+    if (Model.ShouldClose)
+    {
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('@Model.ModalID').modal('hide');
+                @if(Model.OnSuccess != string.Empty)
+                    {
+                        <text>
+                            var onSuccess = @Html.Raw(@Model.OnSuccess);
+                            if(typeof onSuccess === 'function'){
+                                onSuccess();
+                            }
+                        </text>
+                    }
+            });
+        </script>
+    }
+    if (Model.FetchData)
+    {
+        <script type="text/JavaScript">
+        $(document).ready(function () {
+            $.ajax({
+                method: "GET",
+                url: "@Html.Raw(Model.Destination)",
+                cache: false,
+                success: function (result) {
+                    $("@Model.Target").html(result);
+                    @if(Model.OnSuccess != string.Empty)
+                    {
+                        <text>
+                            var onSuccess = @Html.Raw(@Model.OnSuccess);
+                            if(typeof onSuccess === 'function'){
+                                onSuccess();
+                            }
+                        </text>
+                    }
+                }, error: function () {
+                    alert("Error");
+                }
+            });
+        });
+        </script>
+    }
+}

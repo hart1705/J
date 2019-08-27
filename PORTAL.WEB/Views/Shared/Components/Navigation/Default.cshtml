@@ -1,0 +1,26 @@
+﻿@model PORTAL.WEB.UserControls.NavigationControl.Navigation
+@if (Model.Item.Where(i => i.MenuItem.Where(m => m.Visible).Any()).Any())
+{
+    foreach (var item in Model.Item)
+    {
+        if (!item.MenuItem.Where(i => i.Visible).Any())
+        {
+            continue;
+        }
+        <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">@item.Category<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+                @foreach (var menuItem in item.MenuItem.Where(i => i.Visible))
+                {
+                    <li><a asp-controller="@menuItem.Controller" asp-action="@menuItem.Action" title="@menuItem.Title">@menuItem.Title</a></li>
+                }
+            </ul>
+        </li>
+    }
+}
+@foreach (var item in Model.NavItem.Where(i => i.MenuItem.Visible))
+{
+    <li>
+        <a asp-controller="@item.MenuItem.Controller" asp-action="@item.MenuItem.Action" title="@item.MenuItem.Title">@item.MenuItem.Title</a>
+    </li>
+}

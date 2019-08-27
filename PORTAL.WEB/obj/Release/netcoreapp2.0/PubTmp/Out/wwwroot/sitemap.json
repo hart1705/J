@@ -1,0 +1,61 @@
+﻿{
+    "Item": [
+        {
+            "Category": "Administration",
+            "MenuItem": [
+                {
+                    "Title": "Application User",
+                    "Controller": "ApplicationUser",
+                    "Action": "Index"
+                },
+                {
+                    "Title": "Application Role",
+                    "Controller": "ApplicationRole",
+                    "Action": "Index"
+                },
+                {
+                    "Title": "Application Permission",
+                    "Controller": "ApplicationPermission",
+                    "Action": "Index"
+                }
+            ]
+        }
+    ],
+    "NavItem": [
+        {
+            "MenuItem": {
+                "Title": "Referral Codes",
+                "Controller": "ReferralCode",
+                "Action": "Index"
+            }
+        },
+        {
+            "MenuItem": {
+                "Title": "Bayanihan",
+                "Controller": "Bayanihan",
+                "Action": "Index"
+            }
+        },
+        {
+          "MenuItem": {
+            "Title": "Geneology",
+            "Controller": "BinaryTree",
+            "Action": "Index"
+          }
+        },
+        {
+            "MenuItem": {
+                "Title": "Unilevel",
+                "Controller": "Unilevel",
+                "Action": "Index"
+            }
+        },
+        {
+            "MenuItem": {
+                "Title": "Income",
+                "Controller": "Income",
+                "Action": "Index"
+            }
+        }
+    ]
+}

@@ -1,0 +1,32 @@
+﻿<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-custom">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle btn-flat btn" style="border:none;" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <div class="navbar-brand">
+                <a asp-area="" asp-controller="Home" asp-action="Index" style="color:white;">
+                    <span class="img-logo">
+                        <img alt="" src="~/images/logo-sm.png" style="max-height: 38px; max-width: 100%; margin-top:-8px;">
+                    </span>&nbsp;
+                    <b>A J M P</b>
+                </a>
+            </div>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a asp-action="Index" asp-controller="Home">
+                        <i class="fa fa-chart-bar"></i> Dashboard
+                    </a>
+                </li>
+                @await Component.InvokeAsync("Navigation")
+            </ul>
+            @await Html.PartialAsync("_LoginPartial")
+        </div>
+    </div>
+</nav>
