@@ -1,0 +1,91 @@
+﻿@model PORTAL.WEB.Models.PermissionViewModels.ActionPermission
+<div id="applicationactionpermission-form-container">
+    <form asp-action="AssociateAction"
+          asp-controller="ApplicationPermission"
+          data-ajax="true"
+          data-ajax-method="POST"
+          data-ajax-mode="replace"
+          data-ajax-success=""
+          data-ajax-update="#applicationactionpermission-modal-content"
+          data-ajax-loading="#applicationactionpermission-addloading"
+          data-ajax-loading-duration="5">
+        @Html.HiddenFor(modelItem => Model.PermissinId)
+        @Html.AntiForgeryToken()
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 id="myModalLabel" class="modal-title">Application Actions</h4>
+        </div>
+        <div class="modal-body" id="applicationactionpermission-modal-body">
+            <div class="row pull-right">
+                <div class="col-md-4">
+                    <p>
+                        <i style="display:none; font-size:16px; line-height:2; margin-right:-20px;" class="fa fa-spinner fa-spin pull-right" id="applicationactionpermission-searchloading"></i>
+                    </p>
+                </div>
+                <div class="col-md-8">
+                    <div class="input-group">
+                        <input id="applicationactionpermission-searchval" onkeypress="Lookup.Search_OnKeyPress(event, '#applicationactionpermission-search-btn');" type="text" class="input-sm form-control">
+                        <span class="input-group-btn">
+                            <button id="applicationactionpermission-search-btn" type="button" class="btn btn-sm btn-default" onclick="$('#applicationactionpermission-search').val($('#applicationactionpermission-searchval').val()); $('#applicationactionpermission-searchform').submit(); return false;">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table responsive no-wrap table-hover table-striped" width="100%" id="applicationactionpermission-addtable">
+                        <thead>
+                            <tr>
+                                <th>
+
+                                </th>
+                                <th>
+                                    Name
+                                </th>
+                                <th>
+                                    Description
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for (int i = 0; i < Model.Actions.Count(); i++)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.HiddenFor(modelItem => Model.Actions[i].Id)
+                                    @Html.EditorFor(modelItem => Model.Actions[i].Selected)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => Model.Actions[i].ApplicationAction_Id)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => Model.Actions[i].Description)
+                                </td>
+                            </tr>
+                    }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-sm btn-flat btn-default" data-dismiss="modal" style="width:65px;">Close</button>
+            <button type="submit" class="btn btn-sm btn-flat btn-primary" style="width:65px;">Add<i id="applicationactionpermission-addloading" class="fa fa-spinner fa-spin" style="display:none"></i></button>
+        </div>
+    </form>
+</div>
+<form id="applicationactionpermission-searchform"
+      asp-action="LookupActionRecord"
+      asp-controller="ApplicationPermission"
+      data-ajax="true"
+      data-ajax-method="GET"
+      data-ajax-mode="replace"
+      data-ajax-success="Lookup.ModalBindToDataTable('applicationactionpermission-addtable')"
+      data-ajax-update="#applicationactionpermission-modal-content"
+      data-ajax-loading="#applicationactionpermission-searchloading"
+      data-ajax-loading-duration="5">
+    <input type="hidden" id="permissionId" name="permissionId" value="@Model.PermissinId">
+    <input type="hidden" id="applicationactionpermission-search" name="search">
+</form>

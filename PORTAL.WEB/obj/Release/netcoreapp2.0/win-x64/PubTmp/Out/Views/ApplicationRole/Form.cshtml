@@ -1,0 +1,41 @@
+﻿@model PORTAL.WEB.Models.ApplicationRoleViewModels.ApplicationRoleModel
+@{
+    ViewData["Title"] = "Role Form";
+    Layout = "~/Views/Shared/_FormLayout.cshtml";
+    var displayPN = Model.FormType == Global.FormType.Create ? "New Application Role" : Model.Name;
+}
+@section ContentHeader{
+    <div class="row">
+        <div class="col-md-12">
+            <div class="pull-left">
+                <small>Application Role</small>
+                <h4>@displayPN</h4>
+            </div>
+            <div class="pull-right">
+                @{ Html.RenderPartial("_FormCommonHeaderGroup", new FormStatusModel { CreatedById = Model.CreatedBy, CreatedOn = Model.CreatedOn, Status = Model.Status }); }
+            </div>
+        </div>
+    </div>
+}
+@section ControlHeader{
+    @{ await Html.RenderPartialAsync("_FormCommonButtonControl", new FormButtonControlModel { ControllerName = "ApplicationRole", FormType = Model.FormType, IsRecordOwner = Model.IsRecordOwner, Status = Model.Status }); }
+}
+
+<div class="row">
+    <div class="col-md-6" id="record-form-container">
+        @{ Html.RenderPartial("_Form", Model);}
+    </div>
+    <div class="col-md-6" id="testlookup">
+        @if (Model.FormType != Global.FormType.Create)
+        {
+            @await Component.InvokeAsync("LookupControl", new { @model = Model.PermissionLookup, @enabled = Model.FormType == Global.FormType.Update })
+            Html.RenderPartial("_BootstrapModalView", new PORTAL.WEB.Models.HelperViewModels.BootstrapModalViewModel { ModalId = $"{Model.PermissionLookup.LookupControlId}-lookup-modal", ModalSize = "modal-default" });
+        }
+        else
+        {
+            <text>
+            Create the record to enable content
+            </text>
+        }
+    </div>
+</div>

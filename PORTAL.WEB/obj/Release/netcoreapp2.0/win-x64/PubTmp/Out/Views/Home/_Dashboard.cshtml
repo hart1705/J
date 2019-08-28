@@ -1,0 +1,79 @@
+﻿@using Newtonsoft.Json
+@model PORTAL.WEB.Models.HomeViewModels.DashboardModel
+@{
+    var months = JsonConvert.SerializeObject(Model.StatPerMonth.Labels);
+    var tempData = JsonConvert.SerializeObject(Model.StatPerMonth.datasets);
+}
+
+<input id="months" type="hidden" value="@months" />
+<input id="statPerMonthData" type="hidden" value="@tempData" />
+<input id="remainingCredits" type="hidden" value="@Model.RemainingCredits" />
+<input id="creditsUsed" type="hidden" value="@Model.TotalCreditsUsed" />
+
+<div class="row">
+    <div class="col-md-3">
+        <div class="info-box">
+            <span class="info-box-icon bg-aqua"><i class="fa fa-chart-bar"></i></span>
+            <div class="info-box-content">
+                <span class="info-box-text">Total Number of Records</span>
+                <span class="info-box-number" style="font-size:21px;">@{ var totalRecords = string.Format("{0:n0}", Model.TotalRecords); }@totalRecords</span>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="info-box">
+            <span class="info-box-icon bg-yellow"><i class="fa fa-align-justify"></i></span>
+            <div class="info-box-content">
+                <span class="info-box-text">On Queue</span>
+                <span class="info-box-number" style="font-size:21px;">@{ var totalOnQueue = string.Format("{0:n0}", Model.TotalOnQueue); }@totalOnQueue</span>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="info-box">
+            <span class="info-box-icon bg-green"><i class="fa fa-check"></i></span>
+            <div class="info-box-content">
+                <span class="info-box-text">Sent</span>
+                <span class="info-box-number" style="font-size:21px;">@{ var totalSent = string.Format("{0:n0}", Model.TotalSent); }@totalSent</span>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="info-box">
+            <span class="info-box-icon bg-red"><i class="fa fa-exclamation"></i></span>
+            <div class="info-box-content">
+                <span class="info-box-text">Send Failed</span>
+                <span class="info-box-number" style="font-size:21px;">@{ var totalFailed = string.Format("{0:n0}", Model.TotalSendFailed); }@totalFailed</span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <br />
+        <br />
+        <div class="info-box bg-blue">
+            <span class="info-box-icon"><i class="ion ion-android-textsms"></i></span>
+            <div class="info-box-content">
+                <span class="info-box-text">Remaining Credits</span>
+                <span class="info-box-number" style="font-size:34px;">@Model.RemainingCredits</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <br />
+                <br />
+                <div style="width:100%;">
+                    <canvas id="statsmscredit"></canvas>
+                </div>
+                <br />
+                <br />
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div style="width: 100%">
+            <canvas id="statpermonth"></canvas>
+        </div>
+    </div>
+</div>

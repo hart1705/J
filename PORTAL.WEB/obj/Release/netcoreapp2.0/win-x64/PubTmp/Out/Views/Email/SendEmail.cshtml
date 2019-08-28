@@ -1,0 +1,36 @@
+﻿@model PORTAL.WEB.Models.EmailViewModel
+@{
+    ViewData["Title"] = "SendEmail";
+    Layout = "~/Views/Shared/_FormLayout.cshtml";
+}
+<h2>SendEmail</h2>
+
+<form asp-action="SendEmail"
+      id="record-form"
+      class="form-horizontal">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-group form-group-sm">
+        <label asp-for="Email" class="col-md-3 control-label"></label>
+        <div class="col-md-9">
+            <input asp-for="Email" class="form-control" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group form-group-sm">
+        <label asp-for="Subject" class="col-md-3 control-label"></label>
+        <div class="col-md-9">
+            <input asp-for="Subject" class="form-control" />
+            <span asp-validation-for="Subject" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group form-group-sm">
+        <label asp-for="Message" class="col-md-3 control-label"></label>
+        <div class="col-md-9">
+            <textarea asp-for="Message" class="form-control" rows="5" style="resize:vertical;"></textarea>
+            <span asp-validation-for="Message" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group form-group-sm">
+        <button class="btn btn-sm btn-flat btn-default" type="submit">Submit</button>
+    </div>
+</form>

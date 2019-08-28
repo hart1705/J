@@ -56,7 +56,7 @@ namespace PORTAL.DAL.EF.Data
 
             #region [AJMP Seed]
 
-            var AJMPUserRolePermission = new string[] { "Administrator", "User", "User Bayanihan" };
+            var AJMPUserRolePermission = new string[] { "Administrator", "User" };
 
             foreach (var rolePermission in AJMPUserRolePermission)
             {

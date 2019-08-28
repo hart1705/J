@@ -29,13 +29,13 @@
                 "Action": "Index"
             }
         },
-        {
-            "MenuItem": {
-                "Title": "Bayanihan",
-                "Controller": "Bayanihan",
-                "Action": "Index"
-            }
-        },
+        //{
+        //    "MenuItem": {
+        //        "Title": "Bayanihan",
+        //        "Controller": "Bayanihan",
+        //        "Action": "Index"
+        //    }
+        //},
         {
           "MenuItem": {
             "Title": "Geneology",

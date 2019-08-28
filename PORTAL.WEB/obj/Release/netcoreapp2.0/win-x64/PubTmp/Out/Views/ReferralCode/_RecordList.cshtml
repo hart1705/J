@@ -1,0 +1,99 @@
+﻿@model PORTAL.WEB.Models.ReferralCodeViewModels.ReferralCodeList
+<table id="record-list-table" class="table responsive no-wrap table-hover table-striped view-datatable" width="100%">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Records.FirstOrDefault().ReferralCode_Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Records.FirstOrDefault().PINCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Records.FirstOrDefault().SecutiryCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Records.FirstOrDefault().User)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Records.FirstOrDefault().CreatedBy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Records.FirstOrDefault().CreatedOn)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Records.FirstOrDefault().Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Records.FirstOrDefault().ReferralCodeStatus)
+            </th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Records)
+        {
+            var isOwner = item.CreatedBy == Model.UserHandler.User.Id;
+            var hasUpdatePermission = Model.UserHandler.HasRequiredPermission("Modem-Update", isOwner);
+            var hasDeletePermission = Model.UserHandler.HasRequiredPermission("Modem-Delete", isOwner);
+            var hasViewPermission = Model.UserHandler.HasRequiredPermission("Modem-Form", isOwner);
+        <tr>
+            <td>
+                @if (hasViewPermission)
+                {
+                    <a asp-action="Form" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.ReferralCode_Id)</a>
+                }
+                else
+                {
+                    @Html.DisplayFor(modelItem => item.ReferralCode_Id)
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PINCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SecutiryCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.UserName)
+            </td>
+            <td>
+                @{var name = await Model.UserHandler.GetUserFullName(item.CreatedBy);
+                }@name
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedOn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReferralCodeStatus)
+            </td>
+            <td>
+                @if (hasUpdatePermission)
+                {
+                    <a asp-action="Form" asp-route-id="@item.Id">Edit</a>
+                }
+                @if (hasDeletePermission && hasUpdatePermission)
+                {
+                    <text>|</text>
+                }
+                @if (hasDeletePermission)
+                {
+                    <a asp-action="Delete" asp-route-id="@item.Id"
+                       data-target="#record-delete-modal"
+                       data-ajax="true"
+                       data-ajax-method="GET"
+                       data-ajax-mode="replace"
+                       data-ajax-success="Helper.BootstrapModal_OnSuccess(this)"
+                       data-ajax-update="#record-delete-modal-content"
+                       data-ajax-loading="#application_loading"
+                       data-ajax-loading-duration="5">
+                        Delete
+                    </a>
+                }
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

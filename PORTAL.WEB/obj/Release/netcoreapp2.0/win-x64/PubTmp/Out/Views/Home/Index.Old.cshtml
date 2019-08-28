@@ -1,0 +1,132 @@
+﻿
+@model PORTAL.WEB.Models.HomeViewModels.DashboardModel
+
+@{
+    ViewData["Title"] = "Home Page";
+    Layout = "~/Views/Shared/_FormLayout.cshtml";
+}
+<div class="row" style="margin-top:-10px;">
+    <div class="col-md-12">
+        <a asp-action="RefreshDashBoard" asp-controller="Home"
+           onclick="$('#staticrefresh').css('display', 'none')"
+           data-ajax="true"
+           data-ajax-method="GET"
+           data-ajax-mode="replace"
+           data-ajax-success=""
+           data-ajax-complete="DashBoard_OnInit"
+           data-ajax-update="#dashboard-container"
+           data-ajax-loading="#dashboardrefresh"
+           data-ajax-loading-duration="5"
+           class="btn btn-sm btn-flat btn-default pull-right lookup-btnadd">
+             <i id="staticrefresh" class="fa fa-sync"></i><i id="dashboardrefresh" class="fa fa-spin fa-sync" style="display:none;"></i>&nbsp;&nbsp;&nbsp;REFRESH
+        </a>
+        <br />
+    </div>
+</div>
+<div id="dashboard-container" class="row" style="padding:5px;">
+    @{ Html.RenderPartial("_Dashboard", Model); }
+</div>
+@section Scripts{
+    <script src="~/lib/Chart.js-2.7.2/Chart.min.js"></script>
+    <script src="~/lib/Chart.js-2.7.2/utils.js"></script>
+    <script>
+
+        function DashBoard_OnInit() {
+
+            var data = JSON.parse($('#statPerMonthData').val());
+            var months = JSON.parse($('#months').val());
+            var remainingCredits = $('#remainingCredits').val();
+            var creditsUsed = $('#creditsUsed').val();
+
+            console.debug(remainingCredits);
+            console.debug(creditsUsed);
+
+            for (var key in data) {
+                var val = data[key]['backgroundColor'];
+                if (val == 'window.chartColors.blue') {
+                    data[key]['backgroundColor'] = window.chartColors.blue;
+                }
+                else if (val == 'window.chartColors.green') {
+                    data[key]['backgroundColor'] = window.chartColors.green;
+                }
+                else if (val == 'window.chartColors.red') {
+                    data[key]['backgroundColor'] = window.chartColors.red;
+                }
+            }
+
+            var barChartData = {
+                labels: months,
+                datasets: data
+            };
+
+            var config = {
+                type: 'doughnut',
+                data: {
+                    datasets: [{
+                        data: [
+                            remainingCredits,
+                            creditsUsed
+                        ],
+                        backgroundColor: [
+                            window.chartColors.blue,
+                            window.chartColors.yellow
+                        ],
+                        label: 'Dataset 1'
+                    }],
+                    labels: [
+                        'Remaining',
+                        'Used'
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    legend: {
+                        position: 'top',
+                    },
+                    title: {
+                        display: true,
+                        text: 'SMS Blast Credit Usage'
+                    },
+                    animation: {
+                        animateScale: true,
+                        animateRotate: true
+                    }
+                }
+            };
+
+
+            var ctx = document.getElementById('statpermonth').getContext('2d');
+            window.myBar = new Chart(ctx, {
+                type: 'bar',
+                data: barChartData,
+                options: {
+                    title: {
+                        display: true,
+                        text: 'SMS Blast Stat'
+                    },
+                    tooltips: {
+                        mode: 'index',
+                        intersect: false
+                    },
+                    responsive: true,
+                    scales: {
+                        xAxes: [{
+                            stacked: true,
+                        }],
+                        yAxes: [{
+                            stacked: true
+                        }]
+                    }
+                }
+            });
+
+            var ctx1 = document.getElementById('statsmscredit').getContext('2d');
+            window.myDoughnut = new Chart(ctx1, config);
+            $('#staticrefresh').css('display', 'inline-block');
+            
+        }
+        window.onload = function () {
+            DashBoard_OnInit();
+        };
+    </script>
+}

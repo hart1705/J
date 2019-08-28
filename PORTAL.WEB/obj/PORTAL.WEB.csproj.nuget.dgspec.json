@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\My Project\\JMP-Project\\PORTAL.WEB\\PORTAL.WEB.csproj": {}
+    "C:\\Users\\ZT Serve\\Documents\\GitHub\\PortfolioWeb\\PORTAL.WEB\\PORTAL.WEB.csproj": {}
   },
   "projects": {
-    "E:\\My Project\\JMP-Project\\PORTAL.DAL.EF\\PORTAL.DAL.EF.csproj": {
+    "C:\\Users\\ZT Serve\\Documents\\GitHub\\PortfolioWeb\\PORTAL.DAL.EF\\PORTAL.DAL.EF.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\My Project\\JMP-Project\\PORTAL.DAL.EF\\PORTAL.DAL.EF.csproj",
+        "projectUniqueName": "C:\\Users\\ZT Serve\\Documents\\GitHub\\PortfolioWeb\\PORTAL.DAL.EF\\PORTAL.DAL.EF.csproj",
         "projectName": "PORTAL.DAL.EF",
-        "projectPath": "E:\\My Project\\JMP-Project\\PORTAL.DAL.EF\\PORTAL.DAL.EF.csproj",
+        "projectPath": "C:\\Users\\ZT Serve\\Documents\\GitHub\\PortfolioWeb\\PORTAL.DAL.EF\\PORTAL.DAL.EF.csproj",
         "packagesPath": "C:\\Users\\ZT Serve\\.nuget\\packages\\",
-        "outputPath": "E:\\My Project\\JMP-Project\\PORTAL.DAL.EF\\obj\\",
+        "outputPath": "C:\\Users\\ZT Serve\\Documents\\GitHub\\PortfolioWeb\\PORTAL.DAL.EF\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\",
@@ -83,26 +83,21 @@
             }
           },
           "imports": [
-            "net461",
-            "net462",
-            "net47",
-            "net471",
-            "net472",
-            "net48"
+            "net461"
           ],
           "assetTargetFallback": true,
           "warn": true
         }
       }
     },
-    "E:\\My Project\\JMP-Project\\PORTAL.WEB\\PORTAL.WEB.csproj": {
+    "C:\\Users\\ZT Serve\\Documents\\GitHub\\PortfolioWeb\\PORTAL.WEB\\PORTAL.WEB.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\My Project\\JMP-Project\\PORTAL.WEB\\PORTAL.WEB.csproj",
+        "projectUniqueName": "C:\\Users\\ZT Serve\\Documents\\GitHub\\PortfolioWeb\\PORTAL.WEB\\PORTAL.WEB.csproj",
         "projectName": "PORTAL.WEB",
-        "projectPath": "E:\\My Project\\JMP-Project\\PORTAL.WEB\\PORTAL.WEB.csproj",
+        "projectPath": "C:\\Users\\ZT Serve\\Documents\\GitHub\\PortfolioWeb\\PORTAL.WEB\\PORTAL.WEB.csproj",
         "packagesPath": "C:\\Users\\ZT Serve\\.nuget\\packages\\",
-        "outputPath": "E:\\My Project\\JMP-Project\\PORTAL.WEB\\obj\\",
+        "outputPath": "C:\\Users\\ZT Serve\\Documents\\GitHub\\PortfolioWeb\\PORTAL.WEB\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\",
@@ -123,8 +118,8 @@
         "frameworks": {
           "netcoreapp2.0": {
             "projectReferences": {
-              "E:\\My Project\\JMP-Project\\PORTAL.DAL.EF\\PORTAL.DAL.EF.csproj": {
-                "projectPath": "E:\\My Project\\JMP-Project\\PORTAL.DAL.EF\\PORTAL.DAL.EF.csproj"
+              "C:\\Users\\ZT Serve\\Documents\\GitHub\\PortfolioWeb\\PORTAL.DAL.EF\\PORTAL.DAL.EF.csproj": {
+                "projectPath": "C:\\Users\\ZT Serve\\Documents\\GitHub\\PortfolioWeb\\PORTAL.DAL.EF\\PORTAL.DAL.EF.csproj"
               }
             }
           }
@@ -172,12 +167,7 @@
             }
           },
           "imports": [
-            "net461",
-            "net462",
-            "net47",
-            "net471",
-            "net472",
-            "net48"
+            "net461"
           ],
           "assetTargetFallback": true,
           "warn": true

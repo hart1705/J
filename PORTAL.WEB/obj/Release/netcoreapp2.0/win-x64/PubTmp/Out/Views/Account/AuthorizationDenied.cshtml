@@ -1,0 +1,10 @@
+﻿@{
+    ViewData["Title"] = "Access Denied";
+}
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            window.location.href = '@Html.Raw(Url.Action("AccessDenied", "Account"))';
+        });
+    </script>
+}

@@ -1,0 +1,35 @@
+﻿@model PORTAL.WEB.Models.HelperViewModels.FormButtonControlModel
+
+@if (Model.FormType == Global.FormType.Create)
+{
+    <rbcontainer action-name="New" controller-name="@Model.ControllerName" is-owner="@Model.IsRecordOwner">
+        <button type="button" width="100" onclick="$('#record-form').submit();" class="btn btn-sm btn-default btn-flat btn-controlheader">
+            <i class="fa fa-save"></i> SAVE
+        </button>
+    </rbcontainer>
+}
+else if (Model.FormType == Global.FormType.Update)
+{
+    <rbcontainer action-name="Update" controller-name="@Model.ControllerName" is-owner="@Model.IsRecordOwner">
+        <button type="button" width="100" onclick="$('#record-form').submit();" class="btn btn-sm btn-default btn-flat btn-controlheader">
+            <i class="fa fa-save"></i> SAVE
+        </button>
+    </rbcontainer>
+}
+<rbcontainer action-name="New" controller-name="@Model.ControllerName" is-owner="@Model.IsRecordOwner">
+    <a asp-action="New" class="btn btn-sm btn-flat btn-default btn-controlheader">
+        <i class="fa fa-plus"></i> NEW
+    </a>
+</rbcontainer>
+@if (Model.Status.HasValue && (Model.FormType == Global.FormType.Update || Model.FormType == Global.FormType.ReadOnly))
+{
+    <rbcontainer action-name="ChangeStatus" controller-name="@Model.ControllerName" is-owner="@Model.IsRecordOwner">
+        <button type="button" width="100" onclick="$('#changestatus-form').submit();" class="btn btn-sm btn-default btn-flat btn-controlheader">
+            <i class="fa fa-adjust"></i> @{ var display = Model.Status.Value == PORTAL.DAL.EF.Helper.Enums.Status.Active ? " DEACTIVATE" : " ACTIVATE"; }
+            @display
+        </button>
+    </rbcontainer>
+}
+<rbcontainer action-name="Index" controller-name="@Model.ControllerName" is-owner="@Model.IsRecordOwner">
+    <a class="btn btn-sm btn-flat btn-default btn-controlheader" asp-action="Index"><i class="fa fa-list-ul"></i> BACK TO LIST</a>
+</rbcontainer>

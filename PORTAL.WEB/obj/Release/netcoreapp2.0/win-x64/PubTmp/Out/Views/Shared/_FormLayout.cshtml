@@ -1,0 +1,45 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div id="application_loading" style="display:none" class="col-md-12">
+    <div style="position: fixed; text-align: center; height: 100%; width: 100%; top: 0; right: 0; left: 0; z-index: 9999999; background-color: #000000; opacity: 0.7;">
+        <div style="padding: 10px; position: fixed; top: 45%; left: 45%; font-size: 30px;">
+            <div style="color: lightgray; font-weight: lighter;"><i class="fa fa-spinner fa-spin"></i>Please wait...</div>
+        </div>
+    </div>
+</div>
+<header class="main-header">
+    @await Html.PartialAsync("_NavigationLayout")
+    @if (IsSectionDefined("ControlHeader"))
+    {
+        <div class="col-md-12" id="control-header">
+            @RenderSection("ControlHeader", required: false)
+        </div>
+    }
+</header>
+<div class="content-wrapper">
+    <div class="container-custom">
+        <section class="content-header">
+            @if (IsSectionDefined("ControlHeader"))
+            {
+                <div style="margin-top: 38px;"></div>
+            }
+            @RenderSection("ContentHeader", required: false)
+            @if (IsSectionDefined("ContentHeader"))
+            {
+                <hr />
+            }
+        </section>
+        <section class="content">
+            @RenderBody()
+        </section>
+    </div>
+</div>
+@await Html.PartialAsync("_FooterLayout")
+@{Html.RenderPartial("_BootstrapModalView", new PORTAL.WEB.Models.HelperViewModels.BootstrapModalViewModel { ModalId = "global-lookup-modal", ModalSize = "modal-default" }); }
+@{Html.RenderPartial("_BootstrapModalView", new PORTAL.WEB.Models.HelperViewModels.BootstrapModalViewModel { ModalId = "annotation-modal", ModalSize = "modal-default" }); }
+@{Html.RenderPartial("_BootstrapModalView", new PORTAL.WEB.Models.HelperViewModels.BootstrapModalViewModel { ModalId = "record-delete-modal", ModalSize = "modal-default" }); }
+@section Scripts{
+    @RenderSection("Scripts", required: false)
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

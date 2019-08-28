@@ -1,0 +1,58 @@
+﻿@model PORTAL.WEB.Models.BayanihanViewModels.BayanihanLevelsModel
+@{
+    ViewData["Title"] = "Bayanihan";
+    Layout = "~/Views/Shared/_FormLayout.cshtml";
+}
+
+@section ContentHeader{
+    <h4>Bayanihan</h4>
+}
+<link href="~/lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
+@section ControlHeader{
+    <a class="btn btn-sm btn-flat btn-default btn-controlheader" href="/Account/Register?p=&parentId=&regtype=bayanihan"><i class="fa fa-plus"></i> REGISTER NEW ACCOUNT</a>
+}
+<div id="dashboard-container" class="row" style="padding:5px;">
+    @{ Html.RenderPartial("_Bayanihan", Model); }
+</div>
+@section Scripts{
+    <script src="~/js/canvasjs.js"></script>
+    <script>
+        window.onload = function () {
+
+            var chart = new CanvasJS.Chart("chartContainer", {
+                animationEnabled: true,
+                exportEnabled: false,
+                theme: "light2",
+
+                data: [{
+                    type: "pyramid",
+                    toolTipContent: "{data}",//"<b>{label}</b>: {y}%",
+                    indexLabelFontColor: "#5A5757",
+                    indexLabelFontSize: 16,
+                    //indexLabel: "{label}",
+                    //indexLabelPlacement: "inside",
+                    click: function (e) {
+                        //alert(e.dataPoint.data);
+                        modal(e.dataPoint.data);
+                    },
+                    dataPoints: [
+                        { y: 12, data: @(Model.Level8), label: "Level 8" },
+                        { y: 12, data: @(Model.Level7), label: "Level 7" },
+                        { y: 12, data: @(Model.Level6), label: "Level 6" },
+                        { y: 12, data: @(Model.Level5), label: "Level 5" },
+                        { y: 12, data: @(Model.Level4), label: "Level 4" },
+                        { y: 12, data: @(Model.Level3), label: "Level 3" },
+                        { y: 12, data: @(Model.Level2), label: "Level 2" },
+                        { y: 12, data: @(Model.Level1), label: "Level 1" }
+                    ]
+                }]
+            });
+            chart.render();
+        }
+
+        function modal(data) {
+            $('#dataId').text(data);
+            $('#myModal').modal();
+        }
+    </script>
+}

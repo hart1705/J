@@ -319,11 +319,11 @@ namespace PORTAL.WEB.Controllers
                     
                     _register.UpdateReferralCode(model.SecurityCode, user.Id);
 
-                    _register.RegisterBayanihan(new Bayanihan { UserId = user.Id });
+                    //_register.RegisterBayanihan(new Bayanihan { UserId = user.Id });
                     CreateIncomeRecord(user.Id);
-                    _incomeCompute.BayanihanIncomeCompute(user.Id);
+                    //_incomeCompute.BayanihanIncomeCompute(user.Id);
                     _incomeCompute.GeneologyIncomeCompute(user.Id);
-                    //_incomeCompute.DirectReferralCompute(_userManager.GetUserId(User));
+                    _incomeCompute.DirectReferralCompute(_userManager.GetUserId(User));
 
                     _incomeCompute.ComputeNetIncome(_userManager.GetUserId(User));
 

@@ -1,0 +1,101 @@
+﻿@model PORTAL.WEB.Models.PermissionViewModels.ActionPermission
+@{
+    bool canTransact = (bool)ViewData["enabled"];
+}
+<div id="applicationactionpermission-container">
+    <text style="font-size:14px; font-weight:600">
+        Application Actions
+    </text>
+    @if (canTransact)
+    {
+        <a asp-action="LookupActionRecord"
+           asp-controller="ApplicationPermission"
+           asp-route-permissionId="@Model.PermissinId"
+           data-target="#applicationactionpermission-modal"
+           data-ajax="true"
+           data-ajax-method="GET"
+           data-ajax-mode="replace"
+           data-ajax-success="Helper.BootstrapModal_OnSuccess(this); Lookup.ModalBindToDataTable('applicationactionpermission-addtable');"
+           data-ajax-update="#applicationactionpermission-modal-content"
+           data-ajax-loading="#application_loading"
+           data-ajax-loading-duration="5"
+           class="btn btn-sm btn-flat btn-default pull-right lookup-btnadd">
+            <i class="fa fa-plus"></i>&nbsp;&nbsp;&nbsp;ADD
+        </a>
+    }
+    <table class="table responsive no-wrap table-hover table-striped lookup-table" width="100%" id="applicationactionpermission-table">
+        <thead>
+            <tr>
+                <th>
+                    Action Name
+                </th>
+                <th>
+                    Description
+                </th>
+                <th>
+                    Access Type
+                </th>
+                @if (canTransact)
+                {
+                    <th>Actions</th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Actions)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ApplicationAction_Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @if (canTransact)
+                        {
+                            <select asp-for="@item.AccessType" asp-items="Html.GetEnumSelectList<PORTAL.DAL.EF.Helper.Enums.AccessType>()"
+                                    onchange="ApplicationPermission.AccessType_OnChange(this, '@item.Id', '@Model.PermissinId');"></select>
+                        }
+                        else
+                        {
+                            @Html.DisplayFor(modelItem => item.AccessType)
+                        }
+                    </td>
+                    @if (canTransact)
+                    {
+                        <td>
+                            <a asp-action="DisassociateAction" asp-controller="ApplicationPermission"
+                               asp-route-id="@item.Id"
+                               asp-route-permissionId="@Model.PermissinId"
+                               data-target="#applicationactionpermission-modal"
+                               data-ajax="true"
+                               data-ajax-method="GET"
+                               data-ajax-mode="replace"
+                               data-ajax-success="Helper.BootstrapModal_OnSuccess(this);"
+                               data-ajax-update="#applicationactionpermission-modal-content"
+                               data-ajax-loading="#application_loading"
+                               data-ajax-loading-duration="5">
+                                Remove
+                            </a>
+                        </td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<form id="applicationpermission-change-accesstype-form" asp-controller="ApplicationPermission"
+      asp-action="ChangeAccessType"
+      data-ajax="true"
+      data-ajax-method="POST"
+      data-ajax-mode="replace"
+      data-ajax-success=""
+      data-ajax-update="#applicationactionpermission-modal-content"
+      data-ajax-loading="#application_loading"
+      data-ajax-loading-duration="5">
+    <input type="hidden" id="actionId" name="actionId" />
+    <input type="hidden" id="permissionId" name="permissionId" />
+    <input type="hidden" id="accessType" name="accessType" />
+</form>

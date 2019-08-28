@@ -1,0 +1,42 @@
+﻿@model PORTAL.WEB.Models.GSMModemViewModels.ModemModel
+@{
+    ViewData["Title"] = "Modem Form";
+    Layout = "~/Views/Shared/_FormLayout.cshtml";
+    var controller = "Modem";
+}
+@section ContentHeader{
+    <div class="row">
+        <div class="col-md-12">
+            <div class="pull-left">
+                <small>Modem</small>
+                <h4>@Model.GSMModem_Id</h4>
+            </div>
+            <div class="pull-right">
+                @{ Html.RenderPartial("_FormCommonHeaderGroup", new FormStatusModel { CreatedById = Model.CreatedBy, CreatedOn = Model.CreatedOn, Status = Model.Status }); }
+            </div>
+        </div>
+    </div>
+}
+@section ControlHeader{
+    @{ await Html.RenderPartialAsync("_FormCommonButtonControl", new FormButtonControlModel { ControllerName = controller, FormType = Model.FormType, IsRecordOwner = Model.IsRecordOwner, Status = Model.Status }); }
+}
+
+<div class="row">
+    <div class="col-md-6" id="record-form-container">
+        @{ Html.RenderPartial("_Form", Model);}
+    </div>
+    <div class="col-md-6">
+        <text class="form-section">
+            NOTES AND ATTACHMENTS
+            <hr />
+        </text>
+        @if (Model.FormType == Global.FormType.Create)
+        {
+            <p>Create the record to enable the content.</p>
+        }
+        else
+        {
+            @await Component.InvokeAsync("Annotation", new { @entityName = "GSMModem", @recordId = Model.Id });
+        }
+    </div>
+</div>

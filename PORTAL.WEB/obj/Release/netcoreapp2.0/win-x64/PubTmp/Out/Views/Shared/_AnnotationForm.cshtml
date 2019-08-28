@@ -1,0 +1,66 @@
+﻿@model PORTAL.DAL.EF.Models.Annotation
+
+<div id="annotation-form-container">
+    <form asp-controller="Annotation" asp-action="Form"
+          method="post"
+          class="form-horizontal"
+          enctype="multipart/form-data"
+          id="annotation-form"
+          onsubmit="Annotation.Form_OnSubmit(event, this)">
+        @Html.AntiForgeryToken()
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 id="myModalLabel" class="modal-title">Note</h4>
+        </div>
+        <div class="modal-body" id="annotation-modal-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <input type="hidden" asp-for="Id" />
+                    <input type="hidden" asp-for="ObjectId" />
+                    <input type="hidden" asp-for="ObjectName" />
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group form-group-sm">
+                        <label asp-for="Subject" class="col-md-3 control-label"></label>
+                        <div class="col-md-9">
+                            <input asp-for="Subject" type="text" class="form-control" />
+                            <span asp-validation-for="Subject" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group form-group-sm">
+                        <label asp-for="NoteText" class="control-label col-md-3 "></label>
+                        <div class="col-md-9">
+                            <textarea asp-for="NoteText" class="form-control" style="resize:vertical;" rows="5"></textarea>
+                            <span asp-validation-for="NoteText" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group form-group-sm">
+                        <label asp-for="IsPrivate" class="col-md-3 control-label"></label>
+                        <div class="col-md-9">
+                            <input asp-for="IsPrivate" type="checkbox" />
+                            <span asp-validation-for="IsPrivate" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group form-group-sm">
+                        <label asp-for="Attachment" class="col-md-3 control-label"></label>
+                        <div class="col-md-5">
+                            <div class="input-group">
+                                <input asp-for="FileName" class="form-control input-sm" readonly="readonly" />
+                                <label class="input-group-btn">
+                                    <label class="btn btn-default btn-flat btn-sm">
+                                        Attach
+                                        <input type="hidden" asp-for="HasAttachment" />
+                                        <input asp-for="Attachment" type="file" class="" style="display:none" />
+                                    </label>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-sm btn-flat btn-default" data-dismiss="modal" style="width:65px;">Close</button>
+            <button type="submit" class="btn btn-sm btn-flat btn-danger" style="width:65px;">Save<i id="annotation-createloading" class="fa fa-spinner fa-spin" style="display:none"></i></button>
+        </div>
+    </form>
+</div>

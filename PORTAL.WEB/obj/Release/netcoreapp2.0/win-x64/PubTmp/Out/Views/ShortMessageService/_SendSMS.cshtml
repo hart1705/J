@@ -1,0 +1,37 @@
+﻿@model PORTAL.WEB.Models.SMSViewModels.SMSPublicModel
+@{
+    Html.RenderPartial("_FormBehavior", Model.FormBehavior);
+}
+<form asp-controller="ShortMessageService" asp-action="SendSMS"
+      id="record-form"
+      data-ajax-mode="replace"
+      data-ajax-update="#record-form-container"
+      data-ajax-loading="#application_loading"
+      data-ajax="true"
+      data-ajax-complete="SMSPublic.Form_OnLoad(true)"
+      data-ajax-method="POST"
+      class="form-horizontal">
+    <div style="margin-left:-43px;" asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-group form-group-sm">
+        <label asp-for="SenderName" class="control-label"></label>
+        <input asp-for="SenderName" class="form-control" />
+        <span asp-validation-for="SenderName" class="text-danger"></span>
+    </div>
+    <div class="form-group form-group-sm">
+        <label asp-for="MobileNumber" class="control-label"></label>
+        <input asp-for="MobileNumber" class="form-control" />
+        <span asp-validation-for="MobileNumber" class="text-danger"></span>
+    </div>
+    <div class="form-group form-group-sm">
+        <label asp-for="MessageBody" class="control-label"></label>
+        <textarea asp-for="MessageBody" maxlength="400" class="form-control" rows="5" style="resize:vertical;" onkeyup="SMSPublic.CalcRemainingMsg()"></textarea>
+        <small class="pull-right"><label style="font-weight:200" id="charcount"></label></small>
+        <span asp-validation-for="MessageBody" class="text-danger"></span>
+    </div>
+    <div class="form-group form-group-sm">
+        <div id="captcha_container"></div>
+    </div>
+    <div class="form-group form-group-sm">
+        <button type="submit" style="width:100%;" class="pull-right btn btn-sm btn-flat btn-toolbar">SEND</button>
+    </div>
+</form>

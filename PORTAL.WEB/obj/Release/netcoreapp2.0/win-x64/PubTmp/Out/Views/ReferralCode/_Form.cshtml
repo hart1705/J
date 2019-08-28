@@ -1,0 +1,85 @@
+﻿@model PORTAL.WEB.Models.ReferralCodeViewModels.ReferralCodeModel
+@{
+    Html.RenderPartial("_FormBehavior", Model.FormBehavior);
+    var action = string.Empty;
+    var controller = "ReferralCode";
+    if (Model.FormType == Global.FormType.Create || Model.FormType == Global.FormType.Update)
+    {
+        action = Model.FormType == Global.FormType.Create ? "New" : "Update";
+    }
+}
+<form asp-controller="@controller" asp-action="@action"
+      id="record-form"
+      data-ajax-mode="replace"
+      data-ajax-update="#record-form-container"
+      data-ajax-loading="#application_loading"
+      data-ajax="true"
+      data-ajax-complete="Portal.Exec_FormBehavior"
+      data-ajax-method="POST"
+      class="form-horizontal">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="Id" />
+    <input type="hidden" asp-for="FormType" />
+    <div class="form-group form-group-sm">
+        <label asp-for="ReferralCode_Id" class="col-md-3 control-label"></label>
+        <div class="col-md-9">
+            <input asp-for="ReferralCode_Id" type="text" readonly class="form-control" />
+            <span asp-validation-for="ReferralCode_Id" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group form-group-sm">
+        <label asp-for="PINCode" class="col-md-3 control-label"></label>
+        <div class="col-md-9">
+            <input asp-for="PINCode" class="form-control" />
+            <span asp-validation-for="PINCode" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group form-group-sm">
+        <label asp-for="SecutiryCode" class="col-md-3 control-label"></label>
+        <div class="col-md-9">
+            <input asp-for="SecutiryCode" class="form-control" />
+            <span asp-validation-for="SecutiryCode" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group form-group-sm">
+        <label asp-for="UserId" class="control-label col-md-3 "></label>
+        <div class="col-md-9">
+            <lookup input-id="UserId"
+                    lookup-id="lookup-userid"
+                    record-id="@Model.UserId"
+                    entity-name="User"
+                    display-column="UserName"
+                    display-columnset="UserName:[User Name]#FirstName:[First Name]#LastName:[Last Name]"
+                    input-size="sm"
+                    target-modal="global-lookup-modal"
+                    lookup-title="Select User">
+            </lookup>
+            <span asp-validation-for="UserId" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group form-group-sm">
+        <label asp-for="ExpirationDate" class="col-md-3 control-label"></label>
+        <div class="col-md-9">
+            <input asp-for="ExpirationDate" type="date" class="form-control" />
+            <span asp-validation-for="ExpirationDate" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group form-group-sm">
+        <label asp-for="ReferralCodeStatus" class="col-md-3 control-label"></label>
+        <div class="col-md-9">
+            <select asp-for="ReferralCodeStatus" asp-items="Html.GetEnumSelectList<Enums.ReferralCodeStatus>()" class="form-control"></select>
+        </div>
+    </div>
+</form>
+<form asp-controller="@controller" asp-action="ChangeStatus"
+      id="changestatus-form"
+      data-ajax-mode="replace"
+      data-ajax-update="#record-form-container"
+      data-ajax-loading="#application_loading"
+      data-ajax="true"
+      data-ajax-complete="Portal.Exec_FormBehavior"
+      data-ajax-method="POST"
+      class="form-horizontal">
+    <input type="hidden" asp-for="Id" />
+    <input type="hidden" asp-for="FormType" />
+</form>

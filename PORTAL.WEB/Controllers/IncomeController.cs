@@ -36,14 +36,14 @@ namespace PORTAL.WEB.Controllers
             
             List<IncomeModel> dbRec = new List<IncomeModel>();
             var record = await _context.Income.Where(a => a.UserId == id).SingleOrDefaultAsync();
-            var incomeBayanihan = new IncomeModel
-            {
-                IncomeType = "Bayanihan",
-                Description = "Bayanihan Income",
-                TotalAmount = record.BayanihanIncome,
-                NetIncome = record.NetIncome
+            //var incomeBayanihan = new IncomeModel
+            //{
+            //    IncomeType = "Bayanihan",
+            //    Description = "Bayanihan Income",
+            //    TotalAmount = record.BayanihanIncome,
+            //    NetIncome = record.NetIncome
                 
-            };
+            //};
 
             var incomeBinary = new IncomeModel
             {
@@ -70,7 +70,7 @@ namespace PORTAL.WEB.Controllers
             };
 
 
-            dbRec.Add(incomeBayanihan);
+            //dbRec.Add(incomeBayanihan);
             dbRec.Add(incomeBinary);
             dbRec.Add(incomeUnilevel);
             dbRec.Add(incomeGeneology);

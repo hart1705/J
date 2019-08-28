@@ -85,7 +85,7 @@ namespace PORTAL.WEB.Controllers
                 sortDir = model.order[0].dir.ToLower() == "asc";
             }
 
-            var res = _context.ApplicationUser.Where(u => u.UserName != User.Identity.Name).Where(whereClause).OrderByDyn(sortBy, sortDir).GetPaged<ApplicationUser, ApplicationUserModel>(model.start, model.length);
+            var res = _context.ApplicationUser.Where(u => u.UserName != User.Identity.Name && u.UserName != "admin@portal.com").Where(whereClause).OrderByDyn(sortBy, sortDir).GetPaged<ApplicationUser, ApplicationUserModel>(model.start, model.length);
             for (int i = 0; i < res.Results.Count; i++)
             {
                 var cur = res.Results[i];

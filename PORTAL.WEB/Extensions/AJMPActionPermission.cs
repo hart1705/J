@@ -21,7 +21,7 @@ namespace PORTAL.WEB.Extensions
             var permission = _context.ApplicationPermission.Where(x => x.ApplicationPermission_Id == "Administrator").FirstOrDefault();
             if (permission != null)
             {
-                var actions = new string[] { "Account - Register", "Bayanihan - Index", "BinaryTree - Index", "Income - Index",
+                var actions = new string[] { "Account - Register", "Unilevel - Index", "BinaryTree - Index", "Income - Index",
                     "ReferralCode - ChangeStatus", "ReferralCode - Delete", "ReferralCode - Form", "ReferralCode - GenerateCode",
                     "ReferralCode - Index", "ReferralCode - New", "ReferralCode - Update",
                     "ApplicationUser - Form", "ApplicationUser - Index", "ApplicationUser - Update" };
@@ -31,16 +31,16 @@ namespace PORTAL.WEB.Extensions
             permission = _context.ApplicationPermission.Where(x => x.ApplicationPermission_Id == "User").FirstOrDefault();
             if (permission != null)
             {
-                var actions = new string[] { "Account - Register", "Bayanihan - Index", "BinaryTree - Index", "Income - Index" };
+                var actions = new string[] { "Account - Register", "Unilevel - Index", "BinaryTree - Index", "Income - Index" };
                 AssociateActionPermission(permission.Id, actions);
             }
 
-            permission = _context.ApplicationPermission.Where(x => x.ApplicationPermission_Id == "User Bayanihan").FirstOrDefault();
-            if (permission != null)
-            {
-                var actions = new string[] { "Account - Register", "Bayanihan - Index", "Income - Index" };
-                AssociateActionPermission(permission.Id, actions);
-            }
+            //permission = _context.ApplicationPermission.Where(x => x.ApplicationPermission_Id == "User Bayanihan").FirstOrDefault();
+            //if (permission != null)
+            //{
+            //    var actions = new string[] { "Account - Register", "Unilevel - Index", "Income - Index" };
+            //    AssociateActionPermission(permission.Id, actions);
+            //}
         }
 
         private void AssociateActionPermission(string permissionId, string[] actions, bool isAdmin = false)

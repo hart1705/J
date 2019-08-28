@@ -97,6 +97,8 @@ namespace PORTAL.WEB.Services
             incomeRecord.DirectReferralIncome = incomeRecord.DirectReferralIncome + 50;
             _context.Income.Update(incomeRecord);
             _context.SaveChanges();
+            ComputeNetIncome(id);
+
         }
 
         public void UnilevelCompute(string id)
@@ -152,11 +154,12 @@ namespace PORTAL.WEB.Services
         public void ComputeNetIncome(string id)
         {
             var record = _context.Income.SingleOrDefault(a => a.UserId == id);
-            var amountBayanihan = record.BayanihanIncome;
+            var directReferal = record.DirectReferralIncome;
+            //var amountBayanihan = record.BayanihanIncome;
             var salesMatchBonus = record.SalesMatchBonusIncome;
             var amountUnilevel = record.UnilevelIncome;
             var geneology = record.GeneologyIncome;
-            record.NetIncome = amountBayanihan + amountUnilevel + geneology;
+            record.NetIncome = directReferal + amountUnilevel + geneology;
             _context.Income.Update(record);
             _context.SaveChanges();
         }

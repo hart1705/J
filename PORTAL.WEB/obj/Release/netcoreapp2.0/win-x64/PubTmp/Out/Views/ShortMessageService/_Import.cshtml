@@ -1,0 +1,77 @@
+﻿@model PORTAL.WEB.Models.SMSViewModels.SMSImportModel
+@{
+    Html.RenderPartial("_FormBehavior", Model.FormBehavior);
+    var hasRecordToImport = bool.Parse(ViewData["hasimport"].ToString());
+}
+<div class="row">
+    <form asp-controller="ShortMessageService" asp-action="Import"
+          method="post"
+          class="form-inline"
+          enctype="multipart/form-data"
+          id="record-form"
+          onsubmit="SMS.Form_OnSubmit(event, this)">
+        <input asp-for="FileName" type="hidden" />
+        <div class="col-md-12">
+            <div class="form-group form-group-sm">
+                <div class="input-group">
+                    <input id="formFileDisplay" type="text" class="form-control input-sm" style="width:300px;" readonly="readonly" />
+                    <label class="input-group-btn">
+                        <label class="btn btn-default btn-flat btn-sm">
+                            Attach
+                            <input asp-for="FileAttachment" type="file" class="" style="display:none" />
+                        </label>
+                    </label>
+                </div>
+                <input id="processType" type="hidden" name="processType" />
+                <input value="Process" onclick="$('#processType').val('ProcessImport');" type="submit" class="btn btn-sm btn-flat" style="width:100px;" />
+
+                @if (hasRecordToImport)
+                {
+                    <label class="control-label">SMS Status</label>
+                    <select id="smsStatus" name="smsStatus" class="form-control">
+                        <option value="0">Hold</option>
+                        <option value="1">Queue</option>
+                    </select>
+                    <input value="Import" onclick="$('#processType').val('CommitImport');" type="submit" style="width:100px;" class="btn btn-sm btn-primary btn-flat" />
+                }
+            </div>
+        </div>
+        <div class="col-md-12">
+            @if (int.Parse(ViewData["importeddata"].ToString()) != 0)
+            {
+                <h3 style="color:cornflowerblue">Successfully imported records: @ViewData["importeddata"]</h3>
+            }
+            <p>
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            </p>
+        </div>
+        <div class="col-md-12">
+            <br />
+            <table id="record-list-table" class="table responsive no-wrap table-hover table-striped" width="100%">
+                <thead>
+                    <tr>
+                        <th>
+                            Mobile Number
+                        </th>
+                        <th>
+                            Message Body
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int i = 0; i < Model.Records.Count(); i++)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => Model.Records[i].MobileNumber)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => Model.Records[i].MessageBody)
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </form>
+</div>

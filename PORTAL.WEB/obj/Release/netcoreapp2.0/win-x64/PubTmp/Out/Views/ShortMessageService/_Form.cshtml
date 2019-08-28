@@ -1,0 +1,90 @@
+﻿@model PORTAL.WEB.Models.SMSViewModels.SMSModel
+@{
+    Html.RenderPartial("_FormBehavior", Model.FormBehavior);
+    var action = string.Empty;
+    if (Model.FormType == Global.FormType.Create || Model.FormType == Global.FormType.Update)
+    {
+        action = Model.FormType == Global.FormType.Create ? "New" : "Update";
+    }
+}
+<div class="row">
+    <form asp-controller="ShortMessageService" asp-action="@action"
+          id="record-form"
+          data-ajax-mode="replace"
+          data-ajax-update="#record-form-container"
+          data-ajax-loading="#application_loading"
+          data-ajax="true"
+          data-ajax-complete="Portal.Exec_FormBehavior"
+          data-ajax-method="POST"
+          class="form-horizontal">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="Id" />
+        <input type="hidden" asp-for="FormType" />
+        <div class="col-md-6">
+            <text class="form-section">
+                GENERAL
+                <hr />
+            </text>
+            <div class="form-group form-group-sm">
+                <label asp-for="ShortMessageService_Id" class="col-md-3 control-label"></label>
+                <div class="col-md-9">
+                    <input asp-for="ShortMessageService_Id" type="text" readonly class="form-control" />
+                    <span asp-validation-for="ShortMessageService_Id" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group form-group-sm">
+                <label asp-for="MobileNumber" class="col-md-3 control-label"></label>
+                <div class="col-md-9">
+                    <input asp-for="MobileNumber" class="form-control" />
+                    <span asp-validation-for="MobileNumber" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group form-group-sm">
+                <label asp-for="MessageBody" class="col-md-3 control-label"></label>
+                <div class="col-md-9">
+                    <textarea asp-for="MessageBody" class="form-control" rows="5" style="resize:vertical;"></textarea>
+                    <span asp-validation-for="MessageBody" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <text class="form-section">
+                INTERNAL DATA
+                <hr />
+            </text>
+            <div class="form-group form-group-sm">
+                <label asp-for="SMSStatus" class="col-md-3 control-label"></label>
+                <div class="col-md-9">
+                    <select asp-for="SMSStatus" asp-items="Html.GetEnumSelectList<Enums.SMSStatus>()" class="form-control"></select>
+                    <span asp-validation-for="SMSStatus" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group form-group-sm">
+                <label asp-for="ErrorMessage" class="col-md-3 control-label"></label>
+                <div class="col-md-9">
+                    <textarea asp-for="ErrorMessage" readonly class="form-control" rows="5" style="resize:vertical;"></textarea>
+                    <span asp-validation-for="ErrorMessage" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group form-group-sm">
+                <label asp-for="CompletedOn" class="col-md-3 control-label"></label>
+                <div class="col-md-9">
+                    <input asp-for="CompletedOn" type="datetime-local" readonly class="form-control" />
+                    <span asp-validation-for="CompletedOn" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<form asp-controller="ShortMessageService" asp-action="ChangeStatus"
+      id="changestatus-form"
+      data-ajax-mode="replace"
+      data-ajax-update="#record-form-container"
+      data-ajax-loading="#application_loading"
+      data-ajax="true"
+      data-ajax-complete="Portal.Exec_FormBehavior"
+      data-ajax-method="POST"
+      class="form-horizontal">
+    <input type="hidden" asp-for="Id" />
+    <input type="hidden" asp-for="FormType" />
+</form>

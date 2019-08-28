@@ -1,0 +1,96 @@
+﻿@model PORTAL.WEB.UserControls.Annotation.AnnotationModel
+<div class="col-md-12" id="annotation-list-container">
+    <div class="row col-md-12">
+        <a asp-action="Form"
+           asp-controller="Annotation"
+           asp-route-entityName="@Model.EntityName"
+           asp-route-recordId="@Model.RecordId"
+           class="btn btn-sm btn-flat btn-default btn-controlheader pull-right"
+           style="margin-right:18px;"
+           data-target="#annotation-modal"
+           data-ajax="true"
+           data-ajax-method="GET"
+           data-ajax-mode="replace"
+           data-ajax-success="Annotation.Form_OnInit(); Helper.BootstrapModal_OnSuccess(this);"
+           data-ajax-update="#annotation-modal-content"
+           data-ajax-loading="#application_loading"
+           data-ajax-loading-duration="5">
+            <i class="fa fa-plus"></i> NEW NOTE
+        </a>
+    </div>
+    <div class="col-md-12">
+        <div class="chat" id="annotation-list-box">
+            @foreach (var note in Model.Notes)
+            {
+                <div class="item">
+                    <img src="~/images/noteedit.png" alt="user image" style="" />
+                    <div class="pull-right">
+                        <small class="text-muted">
+                            @{var timeAgo = PORTAL.WEB.Helpers.Common.TimeAgo(note.ModifiedOn);} @timeAgo
+                        </small>
+                        @if (note.CreatedBy != null && Model.CurrentUserId == note.CreatedBy.Id)
+                        {
+                            <div class="toolbar dropdown pull-right">
+                                <a class="btn btn-xs" href="#" data-toggle="dropdown"><span class="fa fa-caret-down fa-fw" aria-hidden="true"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li role="presentation">
+                                        <a asp-action="Form"
+                                           asp-controller="Annotation"
+                                           asp-route-id="@note.Id"
+                                           data-target="#annotation-modal"
+                                           data-ajax="true"
+                                           data-ajax-method="GET"
+                                           data-ajax-mode="replace"
+                                           data-ajax-success="Annotation.Form_OnInit(); Helper.BootstrapModal_OnSuccess(this);"
+                                           data-ajax-update="#annotation-modal-content"
+                                           data-ajax-loading="#application_loading"
+                                           data-ajax-loading-duration="5">
+                                            <span class="fa fa-pencil-alt" aria-hidden="true" onclick="return false;">
+                                            </span>Edit Note
+                                        </a>
+                                    </li>
+                                    <li role="presentation">
+                                        <a asp-action="Delete"
+                                           asp-controller="Annotation"
+                                           asp-route-id="@note.Id"
+                                           data-target="#annotation-modal"
+                                           data-ajax="true"
+                                           data-ajax-method="GET"
+                                           data-ajax-mode="replace"
+                                           data-ajax-success="Helper.BootstrapModal_OnSuccess(this);"
+                                           data-ajax-update="#annotation-modal-content"
+                                           data-ajax-loading="#application_loading"
+                                           data-ajax-loading-duration="5">
+                                            <span class="fa fa-times" aria-hidden="true" onclick="return false;">
+                                            </span>Delete
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        }
+                    </div>
+                    <p class="message">
+                        <a href="#" class="name">
+                            @{var createdBy = note.CreatedBy != null ? (note.CreatedBy.Id == Model.CurrentUserId ? "You" : note.CreatedBy.UserName) : string.Empty;}
+                            @createdBy  @{ var lblPrivate = note.IsPrivate ? "(Private Note)" : string.Empty; }<small class="link-muted">@lblPrivate</small>
+                        </a>
+                        <b>@note.Subject</b> @if (!string.IsNullOrWhiteSpace(note.Subject) && !string.IsNullOrWhiteSpace(note.NoteText))
+                        {<br />}
+                        <text style="padding:0px; font-size:12px; font-weight:600;">@note.NoteText</text>
+                    </p>
+                    @if (note.IsDocument)
+                    {
+                        <div class="attachment">
+                            <h4><small>Attachment:</small></h4>
+                            <p class="filename">
+                                <a asp-action="Download" asp-controller="Annotation" asp-route-id="@note.Id" target="_blank">@note.FileName</a><small>
+                                    @{ var fileSize = PORTAL.WEB.Helpers.Common.FileSize(note.FileSize);}&nbsp;&nbsp; @fileSize
+                                </small>
+                            </p>
+                        </div>
+                    }
+                </div>
+            }
+        </div>
+    </div>
+</div>
