@@ -70,3 +70,9 @@ C:\Users\ZT Serve\Documents\GitHub\PortfolioWeb\PORTAL.WEB\obj\Debug\netcoreapp2
 C:\Users\ZT Serve\Documents\GitHub\PortfolioWeb\PORTAL.WEB\obj\Debug\netcoreapp2.0\PORTAL.WEB.csproj.CopyComplete
 C:\Users\ZT Serve\Documents\GitHub\PortfolioWeb\PORTAL.WEB\obj\Debug\netcoreapp2.0\PORTAL.WEB.dll
 C:\Users\ZT Serve\Documents\GitHub\PortfolioWeb\PORTAL.WEB\obj\Debug\netcoreapp2.0\PORTAL.WEB.pdb
+C:\Users\ZT Serve\Documents\GitHub\PortfolioWeb\PORTAL.WEB\bin\Debug\netcoreapp2.0\appsettings.Development.json
+C:\Users\ZT Serve\Documents\GitHub\PortfolioWeb\PORTAL.WEB\bin\Debug\netcoreapp2.0\appsettings.json
+C:\Users\ZT Serve\Documents\GitHub\PortfolioWeb\PORTAL.WEB\bin\Debug\netcoreapp2.0\bower.json
+C:\Users\ZT Serve\Documents\GitHub\PortfolioWeb\PORTAL.WEB\bin\Debug\netcoreapp2.0\bundleconfig.json
+C:\Users\ZT Serve\Documents\GitHub\PortfolioWeb\PORTAL.WEB\bin\Debug\netcoreapp2.0\libman.json
+C:\Users\ZT Serve\Documents\GitHub\PortfolioWeb\PORTAL.WEB\bin\Debug\netcoreapp2.0\Properties\launchSettings.json

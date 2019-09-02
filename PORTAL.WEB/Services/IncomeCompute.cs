@@ -94,7 +94,7 @@ namespace PORTAL.WEB.Services
         public void DirectReferralCompute(string id)
         {
             var incomeRecord = _context.Income.SingleOrDefault(a => a.UserId == id);
-            incomeRecord.DirectReferralIncome = incomeRecord.DirectReferralIncome + 50;
+            incomeRecord.DirectReferralIncome = incomeRecord.DirectReferralIncome + 200;
             _context.Income.Update(incomeRecord);
             _context.SaveChanges();
             ComputeNetIncome(id);
@@ -112,7 +112,7 @@ namespace PORTAL.WEB.Services
                 }
 
                 var incomeRecord = _context.Income.SingleOrDefault(a => a.UserId == item.ToString());
-                incomeRecord.UnilevelIncome = incomeRecord.UnilevelIncome + 5;
+                incomeRecord.UnilevelIncome = incomeRecord.UnilevelIncome + 100;
                 _context.Income.Update(incomeRecord);
                 _context.SaveChanges();
                 ComputeNetIncome(item.ToString());
@@ -192,7 +192,7 @@ namespace PORTAL.WEB.Services
                     var income = _context.Income.Where(x => x.UserId == tempParentId).FirstOrDefault();
                     if (income != null)
                     {
-                        income.GeneologyIncome += (15 * level);
+                        income.GeneologyIncome += (1000 * level);
                         _context.Update(income);
                         _context.SaveChanges();
                         ComputeNetIncome(tempParentId);
