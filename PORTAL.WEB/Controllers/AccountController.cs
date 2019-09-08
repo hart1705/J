@@ -322,9 +322,9 @@ namespace PORTAL.WEB.Controllers
                     //_register.RegisterBayanihan(new Bayanihan { UserId = user.Id });
                     CreateIncomeRecord(user.Id);
                     //_incomeCompute.BayanihanIncomeCompute(user.Id);
-                    _incomeCompute.GeneologyIncomeCompute(user.Id);
-                    _incomeCompute.DirectReferralCompute(_userManager.GetUserId(User));
-
+                    //_incomeCompute.GeneologyIncomeCompute(user.Id);
+                    //_incomeCompute.DirectReferralCompute(_userManager.GetUserId(User));
+                    _incomeCompute.IncentiveCompute(_userManager.GetUserId(User), user.Id);
                     _incomeCompute.ComputeNetIncome(_userManager.GetUserId(User));
 
                     var roleName = string.Empty;
@@ -335,7 +335,7 @@ namespace PORTAL.WEB.Controllers
                     else
                     {
                         roleName = "User";
-                        _incomeCompute.UnilevelCompute(user.Id);
+                        //_incomeCompute.UnilevelCompute(user.Id);
                     }
                     var role = _context.ApplicationRole.Where(r => r.Name == roleName).FirstOrDefault();
                     if (role != null)

@@ -1,0 +1,20 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+    Layout = "~/Views/Shared/_FormLayout.cshtml";
+}
+
+@section ContentHeader{
+    <h4>DASHBOARD</h4>
+}
+
+@model string
+
+<div id="dashboard-container" class="row" style="padding:5px;">
+    <div class="center-block">
+        <h1 style="color:blue; font-family: '">
+            @Model
+        </h1>
+    </div>
+
+</div>
+

@@ -47,24 +47,24 @@ namespace PORTAL.WEB.Controllers
 
             var incomeBinary = new IncomeModel
             {
-                IncomeType = "Direct Referral",
-                Description = "Direct Referral Income",
+                IncomeType = "Incentives",
+                Description = "Incentives Income",
                 TotalAmount = record.DirectReferralIncome,
                 NetIncome = record.NetIncome
             };
 
-            var incomeUnilevel = new IncomeModel
-            {
-                IncomeType = "Unilevel",
-                Description = "Unilevel Income",
-                TotalAmount = record.UnilevelIncome,
-                NetIncome = record.NetIncome
-            };
+            //var incomeUnilevel = new IncomeModel
+            //{
+            //    IncomeType = "Unilevel",
+            //    Description = "Unilevel Income",
+            //    TotalAmount = record.UnilevelIncome,
+            //    NetIncome = record.NetIncome
+            //};
 
             var incomeGeneology = new IncomeModel
             {
-                IncomeType = "Geneology",
-                Description = "Geneology Income",
+                IncomeType = "Pairing Bonus",
+                Description = "Pairing Bonus Income",
                 TotalAmount = record.GeneologyIncome,
                 NetIncome = record.NetIncome
             };
@@ -72,7 +72,7 @@ namespace PORTAL.WEB.Controllers
 
             //dbRec.Add(incomeBayanihan);
             dbRec.Add(incomeBinary);
-            dbRec.Add(incomeUnilevel);
+            //dbRec.Add(incomeUnilevel);
             dbRec.Add(incomeGeneology);
 
             IncomeList incomeList = new IncomeList

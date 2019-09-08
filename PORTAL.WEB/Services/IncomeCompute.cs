@@ -94,11 +94,45 @@ namespace PORTAL.WEB.Services
         public void DirectReferralCompute(string id)
         {
             var incomeRecord = _context.Income.SingleOrDefault(a => a.UserId == id);
-            incomeRecord.DirectReferralIncome = incomeRecord.DirectReferralIncome + 200;
+            incomeRecord.DirectReferralIncome = incomeRecord.DirectReferralIncome + 2000;
             _context.Income.Update(incomeRecord);
             _context.SaveChanges();
             ComputeNetIncome(id);
 
+        }
+
+        public void IncentiveCompute(string id, string newId)
+        {
+            var user = _context.ApplicationUser.Find(newId);
+            if (user == null)
+            {
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(user.ParentId))
+            {
+                return;
+            }
+            if (CheckIfhavePair(user.ParentId))
+            {
+                var incomeRecord = _context.Income.SingleOrDefault(a => a.UserId == user.ParentId);
+                incomeRecord.DirectReferralIncome = incomeRecord.DirectReferralIncome + 4000;
+                incomeRecord.GeneologyIncome = incomeRecord.GeneologyIncome + 1000;
+                _context.Income.Update(incomeRecord);
+                _context.SaveChanges();
+                ComputeNetIncome(id);
+                ComputeNetIncome(user.ParentId);
+            }
+
+        }
+        private bool CheckIfhavePair(string parentId)
+        {
+            var user = _context.ApplicationUser.Where(a => a.ParentId == parentId);
+            if (user.Count() == 2 || user.Count() == 4)
+            {
+                return true;
+            }
+            return false;
         }
 
         public void UnilevelCompute(string id)
@@ -159,7 +193,7 @@ namespace PORTAL.WEB.Services
             var salesMatchBonus = record.SalesMatchBonusIncome;
             var amountUnilevel = record.UnilevelIncome;
             var geneology = record.GeneologyIncome;
-            record.NetIncome = directReferal + amountUnilevel + geneology;
+            record.NetIncome = directReferal + geneology;
             _context.Income.Update(record);
             _context.SaveChanges();
         }

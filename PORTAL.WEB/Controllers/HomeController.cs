@@ -31,17 +31,17 @@ namespace PORTAL.WEB.Controllers
         }
         public IActionResult Index()
         {
-            //DashboardModel model = GenerateDashboardData();
-            //return View(model);
-            var user = string.Empty;
-            user = _userManager.GetUserName(User);
-            string hart = string.Empty;
-            if(user == "hart17")
-            {
-                hart = Test();
-            }
+            DashboardModel model = GenerateDashboardData();
+            return View(model);
+            //var user = string.Empty;
+            //user = _userManager.GetUserName(User);
+            //string hart = string.Empty;
+            //if(user == "hart17")
+            //{
+            //    hart = Test();
+            //}
 
-            return View((object)hart);
+            //return View((object)hart);
         }
 
         private string Test()
@@ -57,43 +57,62 @@ namespace PORTAL.WEB.Controllers
         private DashboardModel GenerateDashboardData()
         {
             DashboardModel model = new DashboardModel();
-            model.TotalCredit = 0;
-            model.TotalCreditsUsed = 0;
-            
-            model.TotalRecords = _context.ShortMessageService.Where(sms => sms.CreatedBy == _userHandler.User.Id).Count();
-            model.TotalOnQueue = _context.ShortMessageService.Where(sms => sms.CreatedBy == _userHandler.User.Id && sms.SMSStatus == Enums.SMSStatus.Queue).Count();
-            model.TotalSent = _context.ShortMessageService.Where(sms => sms.CreatedBy == _userHandler.User.Id && sms.SMSStatus == Enums.SMSStatus.Sent).Count();
-            model.TotalSendFailed = _context.ShortMessageService.Where(sms => sms.CreatedBy == _userHandler.User.Id && sms.SMSStatus == Enums.SMSStatus.SendFailed).Count();
+            model.Name = _userHandler.GetUserFullName(_userHandler.User.Id).Result;
+            model.TotalEarning = _context.Income.Where(a => a.UserId == _userHandler.User.Id).Select(a => a.NetIncome).First();
+            model.WalletBalance = 0;
+            model.DirectReferalBonus = _context.Income.Where(a => a.UserId == _userHandler.User.Id).Select(a => a.DirectReferralIncome).First();
+            model.UnilevelBonus = 0;
+            model.MatchingBonus = _context.Income.Where(a => a.UserId == _userHandler.User.Id).Select(a => a.GeneologyIncome).First();
+            model.TransactionRebates = 0;
+            model.CouponPoints = 0;
+            model.UnpairedBalance = 0;
+            model.LeftPoints = 0;
+            model.RightPoints = 0;
+            model.LeftLeg = 0;
+            model.RightLeg = 0;
 
-            model.StatPerMonth = new StatPerMonth();
-            model.StatPerMonth.Labels = new List<string>();
-            model.StatPerMonth.datasets = new List<Dataset>();
-            model.StatPerMonth.datasets.Add(new Dataset { backgroundColor = "window.chartColors.blue", label = "Total On Queue" });
-            model.StatPerMonth.datasets.Add(new Dataset { backgroundColor = "window.chartColors.green", label = "Total Sent" });
-            model.StatPerMonth.datasets.Add(new Dataset { backgroundColor = "window.chartColors.red", label = "Total Send Failed" });
-
-            var currDate = DateTime.Now;
-
-            for (int i = 1; i <= currDate.Month; i++)
-            {
-                var startDate = new DateTime(currDate.Year, i, 1);
-                var endDate = startDate.AddMonths(1).AddDays(-1);
-                model.StatPerMonth.Labels.Add(DateTimeFormatInfo.CurrentInfo.GetMonthName(i));
-            }
-            for (int j = 0; j < 3; j++)
-            {
-                model.StatPerMonth.datasets[j].data = new List<int>();
-                for (int i = 1; i <= currDate.Month; i++)
-                {
-                    var startDate = new DateTime(currDate.Year, i, 1);
-                    var endDate = startDate.AddMonths(1).AddDays(-1);
-                    var total = _context.ShortMessageService.Where(sms => sms.CreatedBy == _userHandler.User.Id && sms.CreatedOn.HasValue &&
-                    sms.CreatedOn.Value.Date >= startDate.Date && sms.CreatedOn.Value.Date <= endDate.Date && sms.SMSStatus == (Enums.SMSStatus)(j+1)).Count();
-                    model.StatPerMonth.datasets[j].data.Add(total);
-                }
-            }
             return model;
         }
+        //private DashboardModel GenerateDashboardDataOld()
+        //{
+            //DashboardModel model = new DashboardModel();
+            //model.TotalCredit = 0;
+            //model.TotalCreditsUsed = 0;
+            
+            //model.TotalRecords = _context.ShortMessageService.Where(sms => sms.CreatedBy == _userHandler.User.Id).Count();
+            //model.TotalOnQueue = _context.ShortMessageService.Where(sms => sms.CreatedBy == _userHandler.User.Id && sms.SMSStatus == Enums.SMSStatus.Queue).Count();
+            //model.TotalSent = _context.ShortMessageService.Where(sms => sms.CreatedBy == _userHandler.User.Id && sms.SMSStatus == Enums.SMSStatus.Sent).Count();
+            //model.TotalSendFailed = _context.ShortMessageService.Where(sms => sms.CreatedBy == _userHandler.User.Id && sms.SMSStatus == Enums.SMSStatus.SendFailed).Count();
+
+            //model.StatPerMonth = new StatPerMonth();
+            //model.StatPerMonth.Labels = new List<string>();
+            //model.StatPerMonth.datasets = new List<Dataset>();
+            //model.StatPerMonth.datasets.Add(new Dataset { backgroundColor = "window.chartColors.blue", label = "Total On Queue" });
+            //model.StatPerMonth.datasets.Add(new Dataset { backgroundColor = "window.chartColors.green", label = "Total Sent" });
+            //model.StatPerMonth.datasets.Add(new Dataset { backgroundColor = "window.chartColors.red", label = "Total Send Failed" });
+
+            //var currDate = DateTime.Now;
+
+            //for (int i = 1; i <= currDate.Month; i++)
+            //{
+            //    var startDate = new DateTime(currDate.Year, i, 1);
+            //    var endDate = startDate.AddMonths(1).AddDays(-1);
+            //    model.StatPerMonth.Labels.Add(DateTimeFormatInfo.CurrentInfo.GetMonthName(i));
+            //}
+            //for (int j = 0; j < 3; j++)
+            //{
+            //    model.StatPerMonth.datasets[j].data = new List<int>();
+            //    for (int i = 1; i <= currDate.Month; i++)
+            //    {
+            //        var startDate = new DateTime(currDate.Year, i, 1);
+            //        var endDate = startDate.AddMonths(1).AddDays(-1);
+            //        var total = _context.ShortMessageService.Where(sms => sms.CreatedBy == _userHandler.User.Id && sms.CreatedOn.HasValue &&
+            //        sms.CreatedOn.Value.Date >= startDate.Date && sms.CreatedOn.Value.Date <= endDate.Date && sms.SMSStatus == (Enums.SMSStatus)(j+1)).Count();
+            //        model.StatPerMonth.datasets[j].data.Add(total);
+            //    }
+            //}
+            //return model;
+        //}
 
         public IActionResult GetUserBinaryTree()
         {

@@ -7,13 +7,18 @@ namespace PORTAL.WEB.Models.HomeViewModels
 {
     public class DashboardModel
     {
-        public int TotalRecords { get; set; }
-        public int TotalOnQueue { get; set; }
-        public int TotalSent { get; set; }
-        public int TotalSendFailed { get; set; }
-        public int TotalCredit { get; set; }
-        public int TotalCreditsUsed { get; set; }
-        public int RemainingCredits { get { return TotalCredit - TotalCreditsUsed; } }
-        public StatPerMonth StatPerMonth { get; set; }
+        public string Name { get; set; }
+        public decimal TotalEarning { get; set; }
+        public decimal WalletBalance { get; set; }
+        public decimal DirectReferalBonus { get; set; }
+        public decimal UnilevelBonus { get; set; }
+        public decimal MatchingBonus { get; set; }
+        public decimal TransactionRebates { get; set; }
+        public int CouponPoints { get; set; }
+        public decimal UnpairedBalance { get; set; }
+        public int LeftPoints { get; set; }
+        public int RightPoints { get; set; }
+        public int LeftLeg { get; set; }
+        public int RightLeg { get; set; }
     }
 }
